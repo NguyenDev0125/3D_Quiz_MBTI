@@ -9,7 +9,7 @@ public class Teleporter : MonoBehaviour
     public ParticleSystem vfx;
     public ArrowDirection arrowDirection;
 
-    bool flag = false;
+    public bool flag = false;
     public float delayTime;
     private float timer = 0;
     private void OnTriggerEnter(Collider other)

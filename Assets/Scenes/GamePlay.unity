@@ -97,8 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: d1a16badd1449b7478262eb17c11bf2b, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: ce3cb6b185de10a48b20443da920c284, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -10045,7 +10045,8 @@ MonoBehaviour:
   player: {fileID: 8423792514706912797}
   vfx: {fileID: 642733741}
   arrowDirection: {fileID: 1128185284}
-  delayTime: 1
+  flag: 1
+  delayTime: 2
 --- !u!65 &642733746
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22183,7 +22184,8 @@ MonoBehaviour:
   player: {fileID: 8423792514706912797}
   vfx: {fileID: 1368853856}
   arrowDirection: {fileID: 1128185284}
-  delayTime: 1
+  flag: 0
+  delayTime: 2
 --- !u!65 &1368853860
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -35948,6 +35950,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   questionPanel: {fileID: 4819010871594574658}
+  questionList: {fileID: 11400000, guid: 4274a63638e5423418d273120421b78d, type: 2}
   E: 0
   I: 0
   S: 0

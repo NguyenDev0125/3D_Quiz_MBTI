@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 public class QuestionController : MonoBehaviour
 {
     [SerializeField] QuestionPanel questionPanel;
-
+    [SerializeField] QuestionList questionList;
 
     public int E = 0, I = 0; 
     public int S = 0, N = 0; 
@@ -29,23 +29,7 @@ public class QuestionController : MonoBehaviour
     }
     public void LoadQuestion()
     {
-        Debug.Log("Load resource");
-        TextAsset quesTxt = Resources.Load<TextAsset>("CauHoi");
-        TextAsset ansTxt = Resources.Load<TextAsset>("DapAn");
-        QuestionStruct[] arrQuesStruct = JsonConvert.DeserializeObject<QuestionStruct[]>(quesTxt.text);
-        AnswerStruct[] arrAnswerStruct = JsonConvert.DeserializeObject<AnswerStruct[]>(ansTxt.text);
-        listQuesNotAnswered = new List<Question>();
-        for (int i = 0; i < arrQuesStruct.Length; i += 2)
-        {
-            Question newQues = new Question();
-            newQues.IDQues = arrQuesStruct[i].IDQues;
-            newQues.NameQues = arrQuesStruct[i].NameQues;
-            newQues.Ans1 = arrQuesStruct[i].NameAns;
-            newQues.Ans2 = arrQuesStruct[i + 1].NameAns;
-            newQues.Group = arrQuesStruct[i].Group;
-            newQues.TrueAnswer = (arrQuesStruct[i].IDAns == arrAnswerStruct[i / 2].IDAns) ? 0 : 1;
-            listQuesNotAnswered.Add(newQues);
-        }
+        listQuesNotAnswered = questionList.questions;
     }
     public void StartAnswering(int count)
     {
@@ -75,7 +59,7 @@ public class QuestionController : MonoBehaviour
             questionPanel.HidePanel();
         }
     }
-    public void TakeResult(int result, int group)
+    public virtual void TakeResult(int result, int group)
     {
         numQuesAnswered++;
         if (result == 2)
@@ -96,7 +80,6 @@ public class QuestionController : MonoBehaviour
             }
             DisplayRandomQuestion();
         }
-
     }
 
     public Question GetRandomQuestion()
