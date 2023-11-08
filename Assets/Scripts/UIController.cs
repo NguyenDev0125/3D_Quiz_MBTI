@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class UIController : MonoBehaviour
 {
     public Button OpenMenuBtn;
+    public Button closeVictoryBtn;
     public GameObject questionList;
     public GameObject victoryPanel;
     public ReviewQuestionPanel reviewQuestionPanel;
@@ -15,6 +16,7 @@ public class UIController : MonoBehaviour
         {
             questionList.SetActive(!questionList.activeInHierarchy);
         });
+        closeVictoryBtn.onClick.AddListener(ShowVictory);
     }
 
     public void HideUI()
@@ -25,6 +27,6 @@ public class UIController : MonoBehaviour
 
     internal void ShowVictory()
     {
-        victoryPanel.gameObject.SetActive(true);
+        victoryPanel.gameObject.SetActive(!victoryPanel.activeInHierarchy);
     }
 }
