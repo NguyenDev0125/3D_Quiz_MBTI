@@ -7,6 +7,7 @@ public class ReviewQuestionPanel : QuestionPanel
     public ReviewQuestionController questionController;
     public override void DisplayQuestion(IQuestion question)
     {
+        base.DisplayQuestion(question);
         ReviewQuestionContent ques = (ReviewQuestionContent)question;
         quesTxt.text = ques.question;
         if(ques.listAnswer.Count == 3)

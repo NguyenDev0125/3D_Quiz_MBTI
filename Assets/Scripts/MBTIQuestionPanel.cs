@@ -1,3 +1,4 @@
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ public class MBTIQuestionPanel : QuestionPanel
     int group = 0;
     public override void DisplayQuestion(IQuestion ques)
     {
+        base.DisplayQuestion(ques);
         MBTIQuestionContent question = (MBTIQuestionContent) ques;
         quesTxt.text = question.NameQues;
         A.SetText(question.Ans1);
@@ -17,7 +19,6 @@ public class MBTIQuestionPanel : QuestionPanel
         C.btn.interactable = true;
         group = question.Group;
         this.gameObject.SetActive(true);
-
     }
     public override void TakeResult(int result)
     {

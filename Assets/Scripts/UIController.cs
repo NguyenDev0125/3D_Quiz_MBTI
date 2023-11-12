@@ -1,4 +1,6 @@
+using DG.Tweening;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,17 +8,42 @@ public class UIController : MonoBehaviour
 {
     public Button OpenMenuBtn;
     public Button closeVictoryBtn;
+    public Button settingBtn;
     public GameObject questionList;
     public GameObject victoryPanel;
     public ReviewQuestionPanel reviewQuestionPanel;
     public MBTIQuestionPanel mbtiQuestionPanel;
+    public Ease ease = Ease.OutBounce;
+    [SerializeField] List<Button> listBtns;
     private void Awake()
     {
         OpenMenuBtn.onClick.AddListener(() =>
         {
             questionList.SetActive(!questionList.activeInHierarchy);
+            RectTransform rect = questionList.GetComponent<RectTransform>();
+            Vector3 normalScale = rect.localScale;
+            rect.transform.localScale = rect.transform.localScale * 0.8f;
+            rect.DOScale(normalScale, 0.1f).SetEase(ease);
+
+        });
+        settingBtn.onClick.AddListener(() =>
+        {
+            SoundSettingPanel.Instance.Togle();
         });
         closeVictoryBtn.onClick.AddListener(ShowVictory);
+
+        foreach(UnityEngine.UI.Button btn in listBtns)
+        {
+            btn.onClick.AddListener(() =>
+            {
+                SoundManager.Instance.PlaySound(SoundName.ButtonClick);
+                RectTransform rect = btn.GetComponent<RectTransform>();
+                Vector3 normalScale = rect.localScale;
+                rect.transform.localScale = rect.transform.localScale * 0.8f;
+                rect.DOScale(normalScale, 0.1f).SetEase(ease);
+            });
+        }
+
     }
 
     public void HideUI()
@@ -27,6 +54,17 @@ public class UIController : MonoBehaviour
 
     internal void ShowVictory()
     {
-        victoryPanel.gameObject.SetActive(!victoryPanel.activeInHierarchy);
+        RectTransform rect = victoryPanel.GetComponent<RectTransform>();
+        if (!victoryPanel.activeInHierarchy)
+        {
+            victoryPanel.gameObject.SetActive(true);
+            rect.transform.localScale *= 0.8f;
+            rect.DOScale(Vector3.one, 0.3f).SetEase(Ease.OutBounce);
+        }
+        else
+        {
+            rect.DOScale(Vector3.one * 0.7f, 0.3f).OnComplete(() => victoryPanel.SetActive(false));
+        }
+
     }
 }

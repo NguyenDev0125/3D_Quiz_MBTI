@@ -1,3 +1,4 @@
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
@@ -15,6 +16,11 @@ public class QuestionPanel : MonoBehaviour
 
     public virtual void DisplayQuestion(IQuestion ques)
     {
+        RectTransform quesTextTransform = GetComponent<RectTransform>();
+        quesTextTransform.localScale = Vector3.one * 0.8f;
+        quesTextTransform.DOScale(Vector3.one, 0.3f).SetEase(Ease.OutBounce).OnComplete(() =>
+        {
 
+        });
     }
 }

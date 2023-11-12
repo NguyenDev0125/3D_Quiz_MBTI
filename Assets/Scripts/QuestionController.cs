@@ -15,6 +15,7 @@ public class QuestionController : MonoBehaviour
         numQuesAnswered = 0;
         DisplayRandomQuestion();
         GameManager.Instance.ChangeState(GameState.Answering);
+        SoundManager.Instance.PlaySound(SoundName.Slide);
     }
     public virtual void DisplayRandomQuestion() { }
     public virtual void TakeResult(int result, int group) { }
