@@ -9,15 +9,15 @@ public class MBTIQuestionPanel : QuestionPanel
     public override void DisplayQuestion(IQuestion ques)
     {
         base.DisplayQuestion(ques);
-        MBTIQuestionContent question = (MBTIQuestionContent) ques;
-        quesTxt.text = question.NameQues;
-        A.SetText(question.Ans1);
-        B.SetText(question.Ans2);
+        MBTIQuestion question = (MBTIQuestion) ques;
+        quesTxt.text = question.nameQuestion;
+        A.SetText(question.nameAns1);
+        B.SetText(question.nameAns2);
         C.SetText("Next question");
         A.btn.interactable = true; 
         B.btn.interactable = true;
         C.btn.interactable = true;
-        group = question.Group;
+        group = 0;
         this.gameObject.SetActive(true);
     }
     public override void TakeResult(int result)

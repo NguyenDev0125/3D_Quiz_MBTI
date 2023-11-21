@@ -119,19 +119,33 @@ public class AnswerStruct
 }
 
 [SerializeField]
-public interface IQuestion
+public interface IQuestion { }
+public class MBTIExam
 {
+    public string id { get; set; }
+    public string note { get; set; }
+    public int numberOfQuestion { get; set; }
+    public string createdBy { get; set; }
+    public List<MBTIQuestionContent> mbtI_ExamQuestions { get; set; }
+}
+[Serializable]
+public class MBTIQuestionContent
+{
+    public MBTIQuestion mbtI_Question { get; set; }
+}
+[Serializable]
+public class MBTIQuestion : IQuestion
+{
+    public string id { get; set; }
+    public string nameQuestion { get; set; }
+    public string firstAnswerType { get; set; }
+    public string secondAnswerType { get; set; }
+    public string nameAns1 { get; set; }
+    public string nameAns2 { get; set; }
+    public string category { get; set; }
+    public string createdBy { get; set; }
+}
 
-}
-public class MBTIQuestionContent : IQuestion
-{
-    public int IDQues;
-    public int TrueAnswer;
-    public string NameQues;
-    public string Ans1;
-    public string Ans2;
-    public int Group;
-}
 [Serializable]
 public class Exam
 {

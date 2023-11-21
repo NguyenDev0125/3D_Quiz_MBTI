@@ -5,5 +5,5 @@ using UnityEngine;
 public class MBTIQuestionsList : ScriptableObject, IQuestionList
 {
     public string questionListId;
-    public List<MBTIQuestionContent> questions;
+    public List<MBTIQuestion> questions;
 }

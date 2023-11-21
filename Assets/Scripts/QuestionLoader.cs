@@ -8,23 +8,22 @@ public class QuestionLoader : MonoBehaviour
     public ReviewQuestionList ReviewQuestionList;
     public void LoadQuestionsFromLocal()
     {
-        TextAsset quesTxt = Resources.Load<TextAsset>("CauHoi");
-        TextAsset ansTxt = Resources.Load<TextAsset>("DapAn");
 
-        QuestionStruct[] arrQuesStruct = JsonConvert.DeserializeObject<QuestionStruct[]>(quesTxt.text);
-        AnswerStruct[] arrAnswerStruct = JsonConvert.DeserializeObject<AnswerStruct[]>(ansTxt.text);
-        MBTIquestionList.questions = new List<MBTIQuestionContent>();
-        for (int i = 0; i < arrQuesStruct.Length; i += 2)
+        MBTIquestionList.questions = new List<MBTIQuestion>();
+        DBRequestManager.Instance.DataGetRequestWithToken(APIUrls.getMBTIExam,PlayerPrefs.GetString("usertoken"), s =>
         {
-            MBTIQuestionContent newQues = new MBTIQuestionContent();
-            newQues.IDQues = arrQuesStruct[i].IDQues;
-            newQues.NameQues = arrQuesStruct[i].NameQues;
-            newQues.Ans1 = arrQuesStruct[i].NameAns;
-            newQues.Ans2 = arrQuesStruct[i + 1].NameAns;
-            newQues.Group = arrQuesStruct[i].Group;
-            newQues.TrueAnswer = (arrQuesStruct[i].IDAns == arrAnswerStruct[i / 2].IDAns) ? 0 : 1;
-            MBTIquestionList.questions.Add(newQues);
-        }
+            Debug.Log(s);
+            MBTIExam[] exams = JsonConvert.DeserializeObject<MBTIExam[]>(s);
+            MBTIquestionList.questionListId = exams[0].id;
+            Debug.Log(exams.Length);
+            Debug.Log(exams[0].mbtI_ExamQuestions.Count);
+
+            for (int i = 0; i < exams[0].mbtI_ExamQuestions.Count; i++)
+            {
+                MBTIquestionList.questions.Add(exams[0].mbtI_ExamQuestions[i].mbtI_Question);
+            }
+        });
+
     }
 
     public void LoadQuestionFormAPI()

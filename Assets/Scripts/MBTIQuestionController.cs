@@ -8,7 +8,7 @@ public class MBTIQuestionController : QuestionController
 
     [SerializeField] MBTIQuestionsList MBTIquestionList;
 
-    private MBTIQuestionContent currQuestion;
+    private MBTIQuestion currQuestion;
     private List<MBTIResult> results;
 
     private void Awake()
@@ -20,10 +20,10 @@ public class MBTIQuestionController : QuestionController
         currQuestion = GetRandomQuestion();
         questionPanel.DisplayQuestion(currQuestion);
     }
-    public MBTIQuestionContent GetRandomQuestion()
+    public MBTIQuestion GetRandomQuestion()
     {
         int randInt = Random.Range(0, MBTIquestionList.questions.Count);
-        MBTIQuestionContent ques = MBTIquestionList.questions[randInt];
+        MBTIQuestion ques = MBTIquestionList.questions[randInt];
         MBTIquestionList.questions.RemoveAt(randInt);
         return ques;
     }
@@ -41,31 +41,35 @@ public class MBTIQuestionController : QuestionController
     public override void TakeResult(int result, int group)
     {
         numQuesAnswered++;
+        string s = "";
         if (result != 2)
         {
-            int trueAns = currQuestion.TrueAnswer;
-            switch (group)
+            switch(currQuestion.firstAnswerType)
             {
-                case 0: if (result == trueAns) E++; else I++; break;
-                case 1: if (result == trueAns) T++; else F++; break;
-                case 2: if (result == trueAns) S++; else N++; break;
-                case 3: if (result == trueAns) J++; else P++; break;
+                case "E": if (result == 0) E++; else I++; break;
+                case "S": if (result == 0) S++; else N++; break;
+                case "T": if (result == 0) T++; else F++; break;
+                case "J": if (result == 0) J++; else P++; break;
             }
         }
         if (MBTIquestionList.questions.Count == 0)
         {
             string mbti = GetMBTIString();
-            mbti = "\""+ mbti+"\"";
-            DBRequestManager.Instance.DataSendRequestWithToken(APIUrls.postMBTIResultApi, mbti, PlayerPrefs.GetString("usertoken"), (s) =>
+            Result rs = new Result();
+            rs.result = mbti;
+            rs.recordDetails = new List<ResultDetail>();
+            for(int i = 0; i < results.Count; i++)
             {
+                ResultDetail dt = new ResultDetail();
+                dt.mbtI_ExamQuestionId = results[i].idQues;
+                dt.userChoice = results[i].answer;
+                rs.recordDetails.Add(dt);
+            }
+            string json = JsonConvert.SerializeObject(rs);
+            DBRequestManager.Instance.DataSendRequestWithToken(APIUrls.postRecord, json, PlayerPrefs.GetString("usertoken"), (s) =>
+            {
+                Debug.Log(json);
                 Debug.Log(s);
-            });
-
-            string json = JsonConvert.SerializeObject(results);
-            Debug.Log(json);
-            DBRequestManager.Instance.DataSendRequestWithToken(APIUrls.postMBTIResultApi, json, PlayerPrefs.GetString("usertoken"), (s) =>
-            {
-                Debug.Log("Post : " + s);
             });
             GameManager.Instance.GameVictory();
             questionPanel.HidePanel();
@@ -78,9 +82,9 @@ public class MBTIQuestionController : QuestionController
             {
 
                 MBTIResult mbti = new MBTIResult();
-                mbti.idQues = currQuestion.IDQues.ToString();
-                mbti.nameQues = currQuestion.NameQues;
-                mbti.answer = result == 0 ? currQuestion.Ans1 : currQuestion.Ans2;
+                mbti.idQues = currQuestion.id.ToString();
+                mbti.nameQues = currQuestion.nameQuestion;
+                mbti.answer = result == 0 ? currQuestion.nameAns1 : currQuestion.nameAns2;
                 results.Add(mbti);
 
                 DisplayRandomQuestion();
@@ -94,4 +98,16 @@ public class MBTIQuestionController : QuestionController
 
     }
 
+}
+
+public class Result
+{
+    public string result = "";
+    public List<ResultDetail> recordDetails;
+}
+
+public class ResultDetail
+{
+    public string mbtI_ExamQuestionId = "";
+    public string userChoice = "";
 }
