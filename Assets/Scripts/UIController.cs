@@ -9,8 +9,11 @@ public class UIController : MonoBehaviour
     public Button OpenMenuBtn;
     public Button closeVictoryBtn;
     public Button settingBtn;
+    public Button menuBtn;
+    public Button closeMenuBtn;
     public GameObject questionList;
     public GameObject victoryPanel;
+    public GameObject menu;
     public ReviewQuestionPanel reviewQuestionPanel;
     public MBTIQuestionPanel mbtiQuestionPanel;
     public Ease ease = Ease.OutBounce;
@@ -31,7 +34,8 @@ public class UIController : MonoBehaviour
             SoundSettingPanel.Instance.Togle();
         });
         closeVictoryBtn.onClick.AddListener(ShowVictory);
-
+        menuBtn.onClick.AddListener(() => menu.SetActive(true));
+        closeMenuBtn.onClick.AddListener(() => menu.SetActive(false));
         foreach(UnityEngine.UI.Button btn in listBtns)
         {
             btn.onClick.AddListener(() =>

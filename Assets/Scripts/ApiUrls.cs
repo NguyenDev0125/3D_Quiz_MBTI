@@ -2,7 +2,7 @@
 
 public static class APIUrls
 {
-    public static readonly string baseAddress = "https://localhost:7145/";
+    public static readonly string baseAddress = "http://35.173.131.117:5000/";
     public static readonly string userLoginApi = baseAddress + "api/Users/login";
     public static readonly string userRegisterApi = baseAddress + "api/Users/register";
     public static readonly string getUsersApi = baseAddress + "api/Users";

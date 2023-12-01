@@ -84,10 +84,12 @@ internal class Attempts
     public string examDate;
     public int attempType = 0;
     public List<AttemptDetailRequest> attemptDetails;
+    public string name = "";
     public Attempts()
     {
         examDate = "2023-10-31T14:06:37.577Z";
         attemptDetails = new List<AttemptDetailRequest>();
+        name = "123";
     }
 }
 internal class AttemptDetailRequest
