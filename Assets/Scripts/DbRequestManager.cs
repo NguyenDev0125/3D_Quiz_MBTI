@@ -14,7 +14,7 @@ public class DbRequestManager : MonoBehaviour
         {
             if(instance == null)
             {
-                instance = FindAnyObjectByType<DbRequestManager>();
+                instance = FindObjectOfType<DbRequestManager>();
             }
             return instance;
         }
