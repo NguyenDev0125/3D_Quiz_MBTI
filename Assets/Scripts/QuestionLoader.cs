@@ -10,7 +10,7 @@ public class QuestionLoader : MonoBehaviour
     {
 
         MBTIquestionList.questions = new List<MBTIQuestion>();
-        DBRequestManager.Instance.DataGetRequestWithToken(APIUrls.getMBTIExam,PlayerPrefs.GetString("usertoken"), s =>
+        DbRequestManager.Instance.DataGetRequestWithToken(APIUrls.getMBTIExam,PlayerPrefs.GetString("usertoken"), s =>
         {
             Debug.Log(s);
             MBTIExam[] exams = JsonConvert.DeserializeObject<MBTIExam[]>(s);
@@ -28,7 +28,7 @@ public class QuestionLoader : MonoBehaviour
 
     public void LoadQuestionFormAPI()
     {
-        DBRequestManager.Instance.DataGetRequestWithToken(APIUrls.getExaminationsApi, PlayerPrefs.GetString("usertoken"), (json) =>
+        DbRequestManager.Instance.DataGetRequestWithToken(APIUrls.getExaminationsApi, PlayerPrefs.GetString("usertoken"), (json) =>
         {
             Respone root = JsonConvert.DeserializeObject<Respone>(json);
             ReviewQuestionList.questions = new List<ReviewQuestionContent>();

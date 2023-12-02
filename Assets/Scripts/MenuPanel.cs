@@ -11,7 +11,7 @@ public class MenuPanel : MonoBehaviour
     {
         backHomeBtn.onClick.AddListener(BackHome);
         backMenuBtn.onClick.AddListener(BackMenu);
-        confirmPanel = FindAnyObjectByType<ConfirmPanel>();
+        confirmPanel = FindObjectOfType<ConfirmPanel>(true);
     }
 
     private void BackHome()
@@ -24,6 +24,8 @@ public class MenuPanel : MonoBehaviour
                 SceneManager.LoadScene("Home");
             }
         };
+        // quen chua goi Display
+        confirmPanel.Display();
 
     }
 
@@ -37,5 +39,6 @@ public class MenuPanel : MonoBehaviour
                 SceneManager.LoadScene("Home");
             }
         };
+        confirmPanel.Display();
     }
 }

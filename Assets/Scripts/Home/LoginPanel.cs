@@ -44,7 +44,7 @@ public class LoginPanel : MonoBehaviour
         }
         LoginUser user = new LoginUser(GetUsername(),GetPassword());
         string json = JsonConvert.SerializeObject(user);
-        DBRequestManager.Instance.DataSendRequest(APIUrls.userLoginApi, json, (s) =>
+        DbRequestManager.Instance.DataSendRequest(APIUrls.userLoginApi, json, (s) =>
         {
             Debug.Log(s);
             LoginUserRespone respone = JsonConvert.DeserializeObject<LoginUserRespone>(s);
@@ -62,7 +62,7 @@ public class LoginPanel : MonoBehaviour
         {
             LoginUser user = new LoginUser(loginUsernameTxt.text , loginPasswordTxt.text); 
             string json = JsonConvert.SerializeObject(user);
-            DBRequestManager.Instance.DataSendRequest(APIUrls.userLoginApi, json , (s) =>
+            DbRequestManager.Instance.DataSendRequest(APIUrls.userLoginApi, json , (s) =>
             {
                 Debug.Log(s);
                 LoginUserRespone respone = JsonConvert.DeserializeObject<LoginUserRespone>(s);
@@ -87,7 +87,7 @@ public class LoginPanel : MonoBehaviour
             UserRegister user = new UserRegister(registerUsernameTxt.text, registerPasswordTxt.text, registerConfirmPasswordTxt.text);
             string json = JsonConvert.SerializeObject(user);
             Debug.Log(json);
-            DBRequestManager.Instance.DataSendRequest(APIUrls.userRegisterApi, json, (s) =>
+            DbRequestManager.Instance.DataSendRequest(APIUrls.userRegisterApi, json, (s) =>
             {
                 Debug.Log(s);
                 LoginUserRespone respone = JsonConvert.DeserializeObject<LoginUserRespone>(s);

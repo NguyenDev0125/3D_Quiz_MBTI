@@ -4,25 +4,25 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class DBRequestManager : MonoBehaviour
+public class DbRequestManager : MonoBehaviour
 {
     #region MAKE SINGLETON
-    private static DBRequestManager instance;
-    public static DBRequestManager Instance
+    private static DbRequestManager instance;
+    public static DbRequestManager Instance
     {
         get
         {
             if(instance == null)
             {
-                instance = FindAnyObjectByType<DBRequestManager>();
+                instance = FindAnyObjectByType<DbRequestManager>();
             }
             return instance;
         }
     }
     private void Awake()
     {
-        if (DBRequestManager.instance != null && DBRequestManager.instance != this) Destroy(this);
-        DontDestroyOnLoad(DBRequestManager.Instance);
+        if (DbRequestManager.instance != null && DbRequestManager.instance != this) Destroy(this);
+        DontDestroyOnLoad(DbRequestManager.Instance);
     }
     #endregion
     public void DataGetRequestWithToken(string url , string token , Action<string> callback)

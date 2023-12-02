@@ -17,6 +17,7 @@ public class Teacher : MonoBehaviour
         {
             isAnswered = true;
             GameManager.Instance.QuestionController.StartAnswering(numQues);
+            
             arrowDirection.SetNextTarget();
             missionListPanel.UnLockMission();
         }

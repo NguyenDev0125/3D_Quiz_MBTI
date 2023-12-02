@@ -41,7 +41,6 @@ public class MBTIQuestionController : QuestionController
     public override void TakeResult(int result, int group)
     {
         numQuesAnswered++;
-        string s = "";
         if (result != 2)
         {
             switch(currQuestion.firstAnswerType)
@@ -66,7 +65,7 @@ public class MBTIQuestionController : QuestionController
                 rs.recordDetails.Add(dt);
             }
             string json = JsonConvert.SerializeObject(rs);
-            DBRequestManager.Instance.DataSendRequestWithToken(APIUrls.postRecord, json, PlayerPrefs.GetString("usertoken"), (s) =>
+            DbRequestManager.Instance.DataSendRequestWithToken(APIUrls.postRecord, json, PlayerPrefs.GetString("usertoken"), (s) =>
             {
                 Debug.Log(json);
                 Debug.Log(s);

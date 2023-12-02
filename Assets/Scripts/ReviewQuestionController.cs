@@ -48,7 +48,7 @@ public class ReviewQuestionController : QuestionController
         string json = JsonConvert.SerializeObject(attempt);
         string token = PlayerPrefs.GetString("usertoken");
         Debug.Log(json);
-        DBRequestManager.Instance.DataSendRequestWithToken(APIUrls.postAttemptApi, json, token, (s) =>
+        DbRequestManager.Instance.DataSendRequestWithToken(APIUrls.postAttemptApi, json, token, (s) =>
         {
             Debug.Log(s);
         });

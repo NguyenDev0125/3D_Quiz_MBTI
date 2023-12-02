@@ -40,6 +40,7 @@ public class UIController : MonoBehaviour
         {
             btn.onClick.AddListener(() =>
             {
+                // Sound manager null vi no khoi tao o home scene, nhung mk load thang game play nen sound manager chua dc khoi tao .
                 SoundManager.Instance.PlaySound(SoundName.ButtonClick);
                 RectTransform rect = btn.GetComponent<RectTransform>();
                 Vector3 normalScale = rect.localScale;
