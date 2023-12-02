@@ -35,17 +35,19 @@ public class HomeUIController : MonoBehaviour
         settingBtn.onClick.AddListener(OpenSettingMenu);
         quitBtn.onClick.AddListener(QuitGame);
         openLoginBtn.onClick.AddListener(OpenLoginMenu);
+        int gameMode = PlayerPrefs.GetInt("mt", -1);
         if(PlayerPrefs.GetInt("mt",0) == 0)
         {
             selectQuesMenu.SetActive(false);
             
         }
-        else
+        else if(gameMode == 1)
         {
             selectQuesMenu.SetActive(true);
             loginPanel.gameObject.SetActive(false);
-            PlayerPrefs.SetInt("mt", 0);
+            
         }
+        PlayerPrefs.SetInt("mt", -1);
 
 
     }

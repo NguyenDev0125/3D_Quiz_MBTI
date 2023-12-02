@@ -23,7 +23,7 @@ public class Teacher : MonoBehaviour
     }
     private void Awake()
     {
-        teacherNameObj.GetComponent<TextMeshProUGUI>().text = teacher;
+        teacherNameObj.GetComponentInChildren<TextMeshProUGUI>().text = teacher;
     }
     public void SetNumQues(int numQues)
     {
@@ -33,7 +33,7 @@ public class Teacher : MonoBehaviour
     {
         Vector3 direction = player.position - teacherNameObj.transform.position;
         direction.Normalize();
-        Quaternion rotation = Quaternion.LookRotation(-direction);
+        Quaternion rotation = Quaternion.LookRotation(direction);
         teacherNameObj.transform.rotation = Quaternion.Euler(0, rotation.eulerAngles.y, 0);
     }
 

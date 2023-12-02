@@ -6,21 +6,36 @@ public class MenuPanel : MonoBehaviour
 {
     [SerializeField] Button backHomeBtn;
     [SerializeField] Button backMenuBtn;
+    ConfirmPanel confirmPanel;
     private void Awake()
     {
         backHomeBtn.onClick.AddListener(BackHome);
         backMenuBtn.onClick.AddListener(BackMenu);
+        confirmPanel = FindAnyObjectByType<ConfirmPanel>();
     }
 
     private void BackHome()
     {
-        PlayerPrefs.SetInt("mt", 0);
-        SceneManager.LoadScene("Home");
+        confirmPanel.OnResult = (result) =>
+        {
+            if(result == ConfirmResult.OK)
+            {
+                PlayerPrefs.SetInt("mt", 0);
+                SceneManager.LoadScene("Home");
+            }
+        };
+
     }
 
     private void BackMenu()
     {
-        PlayerPrefs.SetInt("mt", 1);
-        SceneManager.LoadScene("Home");
+        confirmPanel.OnResult = (result) =>
+        {
+            if (result == ConfirmResult.OK)
+            {
+                PlayerPrefs.SetInt("mt", 1);
+                SceneManager.LoadScene("Home");
+            }
+        };
     }
 }
