@@ -27,7 +27,7 @@ public class SelectQuestionMenu : MonoBehaviour
             if(result == ConfirmResult.OK)
             {
                 HomeUIController.OpenLoadingPanel();
-                questionsLoader.LoadQuestionsFromLocal();
+                questionsLoader.LoadReviewQuestions();
                 PlayerPrefs.SetInt("gamemode", 0);
                 SceneManager.LoadScene("GamePlay");
             }

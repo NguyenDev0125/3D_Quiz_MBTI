@@ -6,13 +6,13 @@ public class QuestionLoader : MonoBehaviour
 {
     public MBTIQuestionsList MBTIquestionList;
     public ReviewQuestionList ReviewQuestionList;
-    public void LoadQuestionsFromLocal()
+    public void LoadReviewQuestions()
     {
 
         MBTIquestionList.questions = new List<MBTIQuestion>();
         DbRequestManager.Instance.DataGetRequestWithToken(APIUrls.getMBTIExam,PlayerPrefs.GetString("usertoken"), s =>
         {
-            Debug.Log(s);
+            Debug.Log("MBITI "+s);
             MBTIExam[] exams = JsonConvert.DeserializeObject<MBTIExam[]>(s);
             MBTIquestionList.questionListId = exams[0].id;
             Debug.Log(exams.Length);
@@ -30,8 +30,10 @@ public class QuestionLoader : MonoBehaviour
     {
         DbRequestManager.Instance.DataGetRequestWithToken(APIUrls.getExaminationsApi, PlayerPrefs.GetString("usertoken"), (json) =>
         {
+            Debug.Log("Review " + json);
             Respone root = JsonConvert.DeserializeObject<Respone>(json);
             ReviewQuestionList.questions = new List<ReviewQuestionContent>();
+            Debug.Log(root.result.items.Count);
             ReviewQuestionList.examId = root.result.items[0].id;
             Debug.Log(ReviewQuestionList.examId);
             List<Exam> items = root.result.items;
