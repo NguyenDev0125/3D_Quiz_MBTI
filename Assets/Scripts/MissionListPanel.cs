@@ -46,6 +46,7 @@ public class MissionListPanel : MonoBehaviour
             if(id == i)
             {
                 arrowDirection.SetTarget(listMission[i].teacher.transform);
+                this.gameObject.SetActive(false);
             }
         }
     }
