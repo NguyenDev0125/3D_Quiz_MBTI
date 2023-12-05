@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 346691416}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7585,7 +7585,7 @@ MonoBehaviour:
   m_ChildAlignment: 1
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 1000, y: 102.86}
+  m_CellSize: {x: 1000, y: 150}
   m_Spacing: {x: 0, y: 15}
   m_Constraint: 1
   m_ConstraintCount: 1
@@ -43083,11 +43083,17 @@ MonoBehaviour:
   itemPrb: {fileID: 2782805539549816603, guid: 4c9535dab1138564aa4d3c41cd42f23e, type: 3}
   scrollView: {fileID: 1744962719}
   listMission:
-  - "\u0110i g\u1EB7p th\u1EA7y Thomson"
-  - "\u0110i g\u1EB7p th\u1EA7y Thomas"
-  - "\u0110i g\u1EB7p c\xF4 Lisa"
-  - "\u0110i g\u1EB7p c\xF4 Linda"
-  - "\u0110i g\u1EB7p Hana"
+  - teacher: {fileID: 753021197}
+    mission: "G\u1EB7p th\u1EA7y thomas"
+  - teacher: {fileID: 993657862}
+    mission: "G\u1EB7p th\u1EA7y Thomson"
+  - teacher: {fileID: 569269407}
+    mission: "G\u1EB7p c\xF4 Mini"
+  - teacher: {fileID: 1023378901}
+    mission: "G\u1EB7p c\xF4 Linda"
+  - teacher: {fileID: 871936100}
+    mission: "G\u1EB7p c\xF4 Lisa"
+  arrowDirection: {fileID: 1128185284}
 --- !u!1001 &4819010872345740834
 PrefabInstance:
   m_ObjectHideFlags: 0

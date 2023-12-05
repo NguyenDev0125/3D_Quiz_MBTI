@@ -25,7 +25,6 @@ public class Teleporter : MonoBehaviour
             player.position = targetPos.position;
             if (!flag)
             {
-                arrowDirection.SetNextTarget();
                 flag = true;
             }
 

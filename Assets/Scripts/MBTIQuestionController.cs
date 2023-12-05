@@ -22,6 +22,7 @@ public class MBTIQuestionController : QuestionController
     }
     public MBTIQuestion GetRandomQuestion()
     {
+        if (MBTIquestionList.questions.Count == 0) return null;
         int randInt = Random.Range(0, MBTIquestionList.questions.Count);
         MBTIQuestion ques = MBTIquestionList.questions[randInt];
         MBTIquestionList.questions.RemoveAt(randInt);
@@ -60,7 +61,7 @@ public class MBTIQuestionController : QuestionController
             for(int i = 0; i < results.Count; i++)
             {
                 ResultDetail dt = new ResultDetail();
-                dt.mbtI_ExamQuestionId = results[i].idQues;
+                dt.mbtI_ExamQuestionId = int.Parse(results[i].idQues);
                 dt.userChoice = results[i].answer;
                 rs.recordDetails.Add(dt);
             }
@@ -107,6 +108,6 @@ public class Result
 
 public class ResultDetail
 {
-    public string mbtI_ExamQuestionId = "";
+    public int mbtI_ExamQuestionId = 0;
     public string userChoice = "";
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -11,15 +12,19 @@ public class MissionItemUI : MonoBehaviour
 
     public Image icon;
     public TextMeshProUGUI text;
+    public Button completeBtn;
 
-    public void Init(bool isUnlocked , string txt)
+    public void Init(int id,bool isUnlocked , string txt , Action<int> callback)
     {
         icon.sprite = isUnlocked ? unLockSpr : lockSpr;
         text.text = txt;
+        completeBtn.onClick.AddListener(() => callback(id));
+
     }
 
     public void Unlock()
     {
         icon.sprite = unLockSpr;
+        completeBtn.gameObject.SetActive(false);
     }
 }

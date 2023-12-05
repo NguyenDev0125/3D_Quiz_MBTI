@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Teacher : MonoBehaviour
 {
+    public int id;
     public string teacher = "Teacher";
     public ArrowDirection arrowDirection;
     public MissionListPanel missionListPanel;
@@ -17,9 +18,8 @@ public class Teacher : MonoBehaviour
         {
             isAnswered = true;
             GameManager.Instance.QuestionController.StartAnswering(numQues);
-            
-            arrowDirection.SetNextTarget();
-            missionListPanel.UnLockMission();
+
+            missionListPanel.UnLockMission(id);
         }
     }
     private void Awake()
