@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ public class QuestionLoader : MonoBehaviour
 {
     public MBTIQuestionsList MBTIquestionList;
     public ReviewQuestionList ReviewQuestionList;
-    public void LoadReviewQuestions()
+    public void LoadMBTIQuestions()
     {
 
         MBTIquestionList.questions = new List<MBTIQuestion>();
@@ -26,26 +27,38 @@ public class QuestionLoader : MonoBehaviour
 
     }
 
-    public void LoadQuestionFormAPI()
+    public void LoadReviewExam(Action<Respone> callback)
     {
         DbRequestManager.Instance.DataGetRequestWithToken(APIUrls.getExaminationsApi, PlayerPrefs.GetString("usertoken"), (json) =>
         {
             Debug.Log("Review " + json);
             Respone root = JsonConvert.DeserializeObject<Respone>(json);
-            ReviewQuestionList.questions = new List<ReviewQuestionContent>();
-            Debug.Log(root.result.items.Count);
-            ReviewQuestionList.examId = root.result.items[0].id;
-            Debug.Log(ReviewQuestionList.examId);
-            List<Exam> items = root.result.items;
-            foreach (var item in items)
-            {
-                foreach (var examQuestion in item.examinationQuestions)
-                {       
-                    ReviewQuestionContent ques = JsonConvert.DeserializeObject<ReviewQuestionContent>(examQuestion.question.content);
-                    ques.examinationQuestionId = examQuestion.id;
-                    ReviewQuestionList.questions.Add(ques);
-                }
-            }
+            callback.Invoke(root);
+            //ReviewQuestionList.questions = new List<ReviewQuestionContent>();
+            //Debug.Log(root.result.items.Count);
+            //ReviewQuestionList.examId = root.result.items[0].id;
+            //Debug.Log(ReviewQuestionList.examId);
+            //List<Exam> items = root.result.items;
+            //foreach (var item in items)
+            //{
+            //    foreach (var examQuestion in item.examinationQuestions)
+            //    {       
+            //        ReviewQuestionContent ques = JsonConvert.DeserializeObject<ReviewQuestionContent>(examQuestion.question.content);
+            //        ques.examinationQuestionId = examQuestion.id;
+            //        ReviewQuestionList.questions.Add(ques);
+            //    }
+            //}
         });
+    }
+
+    public void SaveExam(Exam ex)
+    {
+        ReviewQuestionList.examId = ex.id;
+        foreach (var examQuestion in ex.examinationQuestions)
+        {
+            ReviewQuestionContent ques = JsonConvert.DeserializeObject<ReviewQuestionContent>(examQuestion.question.content);
+            ques.examinationQuestionId = examQuestion.id;
+            ReviewQuestionList.questions.Add(ques);
+        }
     }
 }

@@ -12,7 +12,7 @@ public class UIController : MonoBehaviour
     public Button menuBtn;
     public Button closeMenuBtn;
     public GameObject questionList;
-    public GameObject victoryPanel;
+    public VictoryPanel victoryPanel;
     public GameObject menu;
     public ReviewQuestionPanel reviewQuestionPanel;
     public MBTIQuestionPanel mbtiQuestionPanel;
@@ -33,7 +33,7 @@ public class UIController : MonoBehaviour
         {
             SoundSettingPanel.Instance.Togle();
         });
-        closeVictoryBtn.onClick.AddListener(ShowVictory);
+        closeVictoryBtn.onClick.AddListener(() => ShowVictory());
         menuBtn.onClick.AddListener(() => menu.SetActive(true));
         closeMenuBtn.onClick.AddListener(() => menu.SetActive(false));
         foreach(UnityEngine.UI.Button btn in listBtns)
@@ -57,18 +57,18 @@ public class UIController : MonoBehaviour
         mbtiQuestionPanel.gameObject.SetActive(false);
     }
 
-    internal void ShowVictory()
+    internal void ShowVictory(string result = "")
     {
         RectTransform rect = victoryPanel.GetComponent<RectTransform>();
-        if (!victoryPanel.activeInHierarchy)
+        if (!victoryPanel.gameObject.activeInHierarchy)
         {
-            victoryPanel.gameObject.SetActive(true);
+            victoryPanel.ShowResult(result);    
             rect.transform.localScale *= 0.8f;
             rect.DOScale(Vector3.one, 0.3f).SetEase(Ease.OutBounce);
         }
         else
         {
-            rect.DOScale(Vector3.one * 0.7f, 0.3f).OnComplete(() => victoryPanel.SetActive(false));
+            rect.DOScale(Vector3.one * 0.7f, 0.3f).OnComplete(() => victoryPanel.gameObject.SetActive(false));
         }
 
     }

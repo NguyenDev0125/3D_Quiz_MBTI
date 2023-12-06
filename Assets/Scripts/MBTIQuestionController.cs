@@ -7,7 +7,7 @@ public class MBTIQuestionController : QuestionController
     private int E = 0, I = 0, S = 0, N = 0, T = 0, F = 0, J = 0, P = 0;
 
     [SerializeField] MBTIQuestionsList MBTIquestionList;
-
+    [SerializeField] UIController uiController;
     private MBTIQuestion currQuestion;
     private List<MBTIResult> results;
 
@@ -71,6 +71,14 @@ public class MBTIQuestionController : QuestionController
                 Debug.Log(json);
                 Debug.Log(s);
             });
+            
+            DbRequestManager.Instance.DataGetRequestWithToken(APIUrls.getMBTIDes + mbti, PlayerPrefs.GetString("usertoken"), (s) =>
+            {
+                Debug.Log(APIUrls.getMBTIDes + mbti);
+                Debug.Log(s);
+                string des = JsonConvert.DeserializeObject<MBTIRespone>(s).result.description;
+                uiController.victoryPanel.ShowResult(mbti + " : " + des);
+            });
             GameManager.Instance.GameVictory();
             questionPanel.HidePanel();
             return;
@@ -110,4 +118,21 @@ public class ResultDetail
 {
     public int mbtI_ExamQuestionId = 0;
     public string userChoice = "";
+}
+
+class MBTIRespone
+{
+    public int statusCode;
+    public bool isSuccess;
+    public string errorMessage;
+    public MBTIResult2 result;
+}
+
+class MBTIResult2
+{
+    public int id;
+    public string name;
+    public string code;
+    public string description;
+    public string mbtI_Departments;
 }

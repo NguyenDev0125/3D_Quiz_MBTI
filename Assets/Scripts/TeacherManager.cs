@@ -12,7 +12,7 @@ public class TeacherManager : MonoBehaviour
     private void Start()
     {
 
-        totalQues = mbtiList.questions != null ? mbtiList.questions.Count : reviewQuestionList.questions.Count;
+        totalQues = mbtiList.questions.Count != 0? mbtiList.questions.Count : reviewQuestionList.questions.Count;
         Debug.Log(totalQues);
         int avgNumQues = totalQues / Teachers.Count;
         for(int i = 0; i < Teachers.Count-1; i++)

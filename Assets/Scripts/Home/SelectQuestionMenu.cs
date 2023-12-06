@@ -9,6 +9,7 @@ public class SelectQuestionMenu : MonoBehaviour
 {
     public QuestionLoader questionsLoader;
     public HomeUIController HomeUIController;
+    public SelectExamPanel SelectExamPanel;
     public Button mbtiBtn;
     public Button reviewBtn;
 
@@ -16,18 +17,18 @@ public class SelectQuestionMenu : MonoBehaviour
 
     private void Awake()
     {
-        mbtiBtn.onClick.AddListener(LoadQuestionFromLocal);
-        reviewBtn.onClick.AddListener(LoadQuestionFormUrl);
+        mbtiBtn.onClick.AddListener(MBTIBtnClick);
+        reviewBtn.onClick.AddListener(ReviewBtnClick);
         confirmPanel = FindObjectOfType<ConfirmPanel>(true);
     }
-    private void LoadQuestionFromLocal()
+    private void MBTIBtnClick()
     {
         confirmPanel.OnResult = (result) =>
         {
             if(result == ConfirmResult.OK)
             {
                 HomeUIController.OpenLoadingPanel();
-                questionsLoader.LoadReviewQuestions();
+                questionsLoader.LoadMBTIQuestions();
                 PlayerPrefs.SetInt("gamemode", 0);
                 SceneManager.LoadScene("GamePlay");
             }
@@ -36,20 +37,9 @@ public class SelectQuestionMenu : MonoBehaviour
         confirmPanel.Display();
 
     }
-    private void LoadQuestionFormUrl()
+    private void ReviewBtnClick()
     {
-        confirmPanel.OnResult = (result) =>
-        {
-            if(result == ConfirmResult.OK)
-            {
-                HomeUIController.OpenLoadingPanel();
-                questionsLoader.LoadQuestionFormAPI();
-                PlayerPrefs.SetInt("gamemode", 1);
-                SceneManager.LoadScene("GamePlay");
-            }
-
-        };
-        confirmPanel.Display();
+        SelectExamPanel.Display();
     }
 
 }

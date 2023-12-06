@@ -22,10 +22,12 @@ public class GameManager : SingletonGeneric<GameManager>
         if(gameMode == 0)
         {
             questionController = mbtiQuesController;
+            Debug.Log(0);
         }
         else
         {
             questionController = reviewQuestionController;
+            Debug.Log(1);
         }
     }
 

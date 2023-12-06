@@ -7,11 +7,13 @@ using Random = UnityEngine.Random;
 public class ReviewQuestionController : QuestionController
 {
     public ReviewQuestionList questionList;
+    public UIController uiController;
     private ReviewQuestionContent currQuestion;
     private Attempts attempt;
     private void Awake()
     {
         attempt = new Attempts();
+
     }
 
     public override void TakeResult(int answerIndex)
@@ -52,6 +54,13 @@ public class ReviewQuestionController : QuestionController
         {
             Debug.Log(s);
         });
+        DbRequestManager.Instance.DataGetRequestWithToken(APIUrls.getResultReview, PlayerPrefs.GetString("usertoken"), (s) =>
+        {
+            Debug.Log(s);
+            List<R3> listR3 = JsonConvert.DeserializeObject<R>(s).result.items;
+            uiController.victoryPanel.ShowListResult(listR3);
+        });
+        
         GameManager.Instance.ChangeState(GameState.Playing);
     }
     public override void DisplayRandomQuestion()
@@ -202,5 +211,36 @@ public class Respone
     public bool isSuccess { get; set; }
     public object errorMessage { get; set; }
     public ExamList result { get; set; }
+}
+
+public class R
+{
+    public int statusCode;
+    public bool isSuccess;
+    public string errorMessage;
+    public R2 result;
+}
+
+public class R2
+{
+    public int totalItemsCount;
+    public int pageSize;
+    public int pageIndex;
+    public int totalPagesCount;
+    public bool next;
+    public bool previous;
+    public List<R3> items;
+}
+public class R3
+{
+    public string id;
+    public string name;
+    public string examDate;
+    public int attempType;
+    public int score;
+    public string result;
+    public string doneBy;
+    public string userId;
+
 }
 #endregion

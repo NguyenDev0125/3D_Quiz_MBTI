@@ -9,9 +9,11 @@ public class MissionListPanel : MonoBehaviour
     public ReviewQuestionController controller;
     public MissionItemUI itemPrb;
     public ScrollRect scrollView;
+    public GameObject misstionPanel;
     public List<Misstion> listMission;
     public ArrowDirection arrowDirection;
     private List<MissionItemUI> listMisstionUI;
+    
 
     private void Start()
     {
@@ -46,7 +48,7 @@ public class MissionListPanel : MonoBehaviour
             if(id == i)
             {
                 arrowDirection.SetTarget(listMission[i].teacher.transform);
-                this.gameObject.SetActive(false);
+                misstionPanel.SetActive(false);
             }
         }
     }
