@@ -74,7 +74,7 @@ public class DbRequestManager : MonoBehaviour
     private IEnumerator IE_DataSendRequest(string url, string json , string token = null , Action<string> callback = null)
     {
         byte[] data = System.Text.Encoding.UTF8.GetBytes(json);
-        
+        Debug.Log("Log" + json);
         UnityWebRequest www = new UnityWebRequest(url, "POST");
         www.uploadHandler = new UploadHandlerRaw(data);
         www.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();

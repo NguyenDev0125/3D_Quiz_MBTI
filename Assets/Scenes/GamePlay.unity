@@ -23601,6 +23601,7 @@ MonoBehaviour:
   resultTxt: {fileID: 988387300}
   scroll: {fileID: 108348728}
   itemPrb: {fileID: 97325807233991537, guid: 0c9324e4ebccd1e48a0f66b1ffbae84f, type: 3}
+  closeBtn: {fileID: 425195794}
 --- !u!1001 &1223213189
 PrefabInstance:
   m_ObjectHideFlags: 0

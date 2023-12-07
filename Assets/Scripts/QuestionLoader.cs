@@ -55,6 +55,8 @@ public class QuestionLoader : MonoBehaviour
     {
         ReviewQuestionList.questions = new List<ReviewQuestionContent>();
         ReviewQuestionList.examId = ex.id;
+        ReviewQuestionList.examName = ex.name;  // fukkkkk :))))
+        Debug.Log(ex.name);
         foreach (var examQuestion in ex.examinationQuestions)
         {
             ReviewQuestionContent ques = JsonConvert.DeserializeObject<ReviewQuestionContent>(examQuestion.question.content);

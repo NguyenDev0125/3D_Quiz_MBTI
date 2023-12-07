@@ -8,6 +8,11 @@ public class VictoryPanel : MonoBehaviour
     [SerializeField] TextMeshProUGUI resultTxt;
     [SerializeField] ScrollRect scroll;
     [SerializeField] VictoryListItem itemPrb;
+    [SerializeField] Button closeBtn;
+    private void Awake()
+    {
+        closeBtn.onClick.AddListener(ClosePanel);
+    }
     public void ShowResult(string result)
     {
         resultTxt.text = result;
@@ -24,5 +29,9 @@ public class VictoryPanel : MonoBehaviour
         }
         resultTxt.gameObject.SetActive(false);
         this.gameObject.SetActive(true);
+    }
+    private void ClosePanel()
+    {
+        this.gameObject.SetActive(false);
     }
 }

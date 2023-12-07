@@ -10,27 +10,27 @@ public class ReviewQuestionController : QuestionController
     public UIController uiController;
     private ReviewQuestionContent currQuestion;
     private Attempts attempt;
+    private bool isWin = false;
     private void Awake()
     {
         attempt = new Attempts();
-
+        attempt.name = questionList.examName;
     }
 
     public override void TakeResult(int answerIndex)
     {
+        AttemptDetailRequest newAttemptDetail = new AttemptDetailRequest();
+        newAttemptDetail.examinationQuestionId = currQuestion.examinationQuestionId;
+        newAttemptDetail.isCorrect = currQuestion.listAnswer[answerIndex].isAnswer;
+        newAttemptDetail.userAnswered = currQuestion.listAnswer[answerIndex].value;
+        attempt.attemptDetails.Add(newAttemptDetail);
+
         if (questionList.questions.Count == 0)
         {
+            
             CompleteQuestion();
         }
-        else
-        {
-            AttemptDetailRequest newAttemptDetail = new AttemptDetailRequest();
-            newAttemptDetail.examinationQuestionId = currQuestion.examinationQuestionId;
-            newAttemptDetail.isCorrect = currQuestion.listAnswer[answerIndex].isAnswer;
-            newAttemptDetail.userAnswered = currQuestion.listAnswer[answerIndex].value;
-            attempt.attemptDetails.Add(newAttemptDetail);
 
-        }
         numQuesAnswered++;
         if(numQuesAnswered < numQues)
         {
@@ -46,19 +46,22 @@ public class ReviewQuestionController : QuestionController
 
     private void CompleteQuestion()
     {
+        if (isWin) return;
+        isWin = true;
         GameManager.Instance.GameVictory();
         string json = JsonConvert.SerializeObject(attempt);
         string token = PlayerPrefs.GetString("usertoken");
         Debug.Log(json);
         DbRequestManager.Instance.DataSendRequestWithToken(APIUrls.postAttemptApi, json, token, (s) =>
         {
-            Debug.Log(s);
+            Debug.Log(  s);
         });
         DbRequestManager.Instance.DataGetRequestWithToken(APIUrls.getResultReview, PlayerPrefs.GetString("usertoken"), (s) =>
         {
             Debug.Log(s);
             List<R3> listR3 = JsonConvert.DeserializeObject<R>(s).result.items;
             uiController.victoryPanel.ShowListResult(listR3);
+            
         });
         
         GameManager.Instance.ChangeState(GameState.Playing);
@@ -90,15 +93,19 @@ public class ReviewQuestionController : QuestionController
 
 internal class Attempts
 {
+    public string name;
+    //public string examDate;
     public string examDate;
     public int attempType = 0;
     public List<AttemptDetailRequest> attemptDetails;
-    public string name = "";
+
     public Attempts()
     {
-        examDate = "2023-10-31T14:06:37.577Z";
+        //examDate = "2023-10-31T14:06:37.577Z";
+        DateTime curDate = DateTime.UtcNow;
+        examDate = curDate.ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
+        //examDate = DateTime.Now.ToString("dd-mm-yyyy"); // output 07-12-2023 
         attemptDetails = new List<AttemptDetailRequest>();
-        name = "123";
     }
 }
 internal class AttemptDetailRequest

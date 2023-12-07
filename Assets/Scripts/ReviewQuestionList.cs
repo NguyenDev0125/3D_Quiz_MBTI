@@ -4,5 +4,6 @@ using UnityEngine;
 public class ReviewQuestionList : ScriptableObject
 {
     public string examId;
+    public string examName;
     public List<ReviewQuestionContent> questions;
 }
