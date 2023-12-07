@@ -53,6 +53,7 @@ public class QuestionLoader : MonoBehaviour
 
     public void SaveExam(Exam ex)
     {
+        ReviewQuestionList.questions = new List<ReviewQuestionContent>();
         ReviewQuestionList.examId = ex.id;
         foreach (var examQuestion in ex.examinationQuestions)
         {

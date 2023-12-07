@@ -53,7 +53,7 @@ public class GameManager : SingletonGeneric<GameManager>
     public void GameVictory()
     {
         UIController.HideUI();
-        UIController.ShowVictory();
+        //UIController.ShowVictory();
         SoundManager.Instance.PlaySound(SoundName.Victory);
     }
 }

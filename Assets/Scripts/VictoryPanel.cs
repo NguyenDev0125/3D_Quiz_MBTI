@@ -12,6 +12,7 @@ public class VictoryPanel : MonoBehaviour
     {
         resultTxt.text = result;
         this.gameObject.SetActive(true);
+        scroll.gameObject.SetActive(false);
     }
 
     public void ShowListResult(List<R3> listResults)
@@ -21,5 +22,7 @@ public class VictoryPanel : MonoBehaviour
             VictoryListItem obj = Instantiate(itemPrb , scroll.content);
             obj.SetItem(r.name, r.score.ToString(), r.result);
         }
+        resultTxt.gameObject.SetActive(false);
+        this.gameObject.SetActive(true);
     }
 }
