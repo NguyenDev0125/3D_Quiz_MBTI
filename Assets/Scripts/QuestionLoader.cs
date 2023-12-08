@@ -51,7 +51,7 @@ public class QuestionLoader : MonoBehaviour
         });
     }
 
-    public void SaveExam(Exam ex)
+    public void SaveExam(TestHistory ex)
     {
         ReviewQuestionList.questions = new List<ReviewQuestionContent>();
         ReviewQuestionList.examId = ex.id;

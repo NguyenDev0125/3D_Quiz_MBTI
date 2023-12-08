@@ -8,9 +8,17 @@ public class SelectExamPanel : MonoBehaviour
     [SerializeField] QuestionLoader questionLoader;
     [SerializeField] ScrollRect scrollview;
     [SerializeField] ExamItemUI examUIPrb;
+    [SerializeField] Button closeBtn;
 
-    List<Exam> listExams;
-    
+    List<TestHistory> listExams;
+    private void Awake()
+    {
+        closeBtn.onClick.AddListener(() =>
+        {
+            this.gameObject.SetActive(false);
+        });
+    }
+
     public void Display()
     {
         questionLoader.LoadReviewExam((respone) =>
@@ -18,7 +26,7 @@ public class SelectExamPanel : MonoBehaviour
             listExams = respone.result.items;
             for(int i = 0; i < listExams.Count;i++)
             {
-                Exam ex = listExams[i];
+                TestHistory ex = listExams[i];
                 ExamItemUI item = Instantiate(examUIPrb);
                 item.SetItem(ex.id, ex.name, ex.description, SelectExam);
                 item.transform.SetParent(scrollview.content,false);
@@ -29,7 +37,7 @@ public class SelectExamPanel : MonoBehaviour
 
     private void SelectExam(string id)
     {
-        foreach(Exam ex in listExams)
+        foreach(TestHistory ex in listExams)
         {
             if(ex.id == id)
             questionLoader.SaveExam(ex);

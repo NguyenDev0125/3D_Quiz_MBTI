@@ -74,20 +74,20 @@ public class MBTIQuestionController : QuestionController
                 rs.recordDetails.Add(dt);
             }
             string json = JsonConvert.SerializeObject(rs);
+            Debug.Log("Push json");
             DbRequestManager.Instance.DataSendRequestWithToken(APIUrls.postRecord, json, PlayerPrefs.GetString("usertoken"), (s) =>
             {
                 Debug.Log(json);
                 Debug.Log(s);
             });
-            Debug.Log("Load des");
-            Debug.Log(APIUrls.getMBTIDes + mbti);
-            DbRequestManager.Instance.DataGetRequestWithToken(APIUrls.getMBTIDes + mbti, PlayerPrefs.GetString("usertoken"), (s) =>
-            {
-                Debug.Log("...");
 
+            Debug.Log(APIUrls.getMBTIDes + mbti);
+            DbRequestManager.Instance.DataGetRequestWithToken(APIUrls.getMBTIDes + mbtiString, PlayerPrefs.GetString("usertoken"), (s) =>
+            {
                 Debug.Log(s);
                 string des = JsonConvert.DeserializeObject<MBTIRespone>(s).result.description;
-                uiController.victoryPanel.ShowResult(mbti + " : " + des);
+                Debug.Log(des);
+                uiController.victoryPanel.ShowResult(mbtiString + " : " + des);
             });
             GameManager.Instance.GameVictory();
             questionPanel.HidePanel();

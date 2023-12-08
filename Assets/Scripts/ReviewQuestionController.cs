@@ -58,10 +58,34 @@ public class ReviewQuestionController : QuestionController
         });
         DbRequestManager.Instance.DataGetRequestWithToken(APIUrls.getResultReview, PlayerPrefs.GetString("usertoken"), (s) =>
         {
-            Debug.Log(s);
+            Debug.Log("Test");
+            Debug.Log("API Tra ve :  "+s);
             List<R3> listR3 = JsonConvert.DeserializeObject<R>(s).result.items;
             uiController.victoryPanel.ShowListResult(listR3);
-            
+            Debug.Log(listR3.Count);
+            int score = 0;
+            foreach(R3 r3 in listR3)
+            {
+                score += r3.score;
+            }
+            List<TestHistory2> listTest;
+            string data = PlayerPrefs.GetString("test_history","");
+            if(data == "")
+            {
+                listTest = new List<TestHistory2>();
+            }
+            else
+            {
+                listTest = JsonConvert.DeserializeObject<List<TestHistory2>>(data);
+            }
+            TestHistory2 test = new TestHistory2();
+            test.name = listR3[0].name;
+            test.examDate = listR3[0].examDate;
+            test.totalScore = score;
+            listTest.Add(test);
+            string js = JsonConvert.SerializeObject(listTest);
+            PlayerPrefs.SetString("test_history", js);
+
         });
         
         GameManager.Instance.ChangeState(GameState.Playing);
@@ -165,7 +189,7 @@ public class MBTIQuestion : IQuestion
 }
 
 [Serializable]
-public class Exam
+public class TestHistory // cai nay chui dau ra 
 {
     public string id;
     public string name { get; set; }
@@ -209,7 +233,7 @@ public class ExamList
     public int totalPagesCount;
     public bool next;
     public bool previous;
-    public List<Exam> items { get; set; }
+    public List<TestHistory> items { get; set; }
 }
 [Serializable]
 public class Respone
