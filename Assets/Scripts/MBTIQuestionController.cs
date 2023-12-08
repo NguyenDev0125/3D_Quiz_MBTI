@@ -10,13 +10,14 @@ public class MBTIQuestionController : QuestionController
     [SerializeField] UIController uiController;
     private MBTIQuestion currQuestion;
     private List<MBTIResult> results;
-
+    private bool checkingResult = false;
     private void Awake()
     {
         results = new List<MBTIResult>();
     }
     public override void DisplayRandomQuestion()
     {
+        
         currQuestion = GetRandomQuestion();
         questionPanel.DisplayQuestion(currQuestion);
     }
@@ -52,11 +53,18 @@ public class MBTIQuestionController : QuestionController
                 case "J": if (result == 0) J++; else P++; break;
             }
         }
+
+        MBTIResult mbti = new MBTIResult();
+        mbti.idQues = currQuestion.id.ToString();
+        mbti.nameQues = currQuestion.nameQuestion;
+        mbti.answer = result == 0 ? currQuestion.nameAns1 : currQuestion.nameAns2;
+        results.Add(mbti);
+
         if (MBTIquestionList.questions.Count == 0)
         {
-            string mbti = GetMBTIString();
+            string mbtiString = GetMBTIString();
             Result rs = new Result();
-            rs.result = mbti;
+            rs.result = mbtiString;
             rs.recordDetails = new List<ResultDetail>();
             for(int i = 0; i < results.Count; i++)
             {
@@ -71,10 +79,12 @@ public class MBTIQuestionController : QuestionController
                 Debug.Log(json);
                 Debug.Log(s);
             });
-            
+            Debug.Log("Load des");
+            Debug.Log(APIUrls.getMBTIDes + mbti);
             DbRequestManager.Instance.DataGetRequestWithToken(APIUrls.getMBTIDes + mbti, PlayerPrefs.GetString("usertoken"), (s) =>
             {
-                Debug.Log(APIUrls.getMBTIDes + mbti);
+                Debug.Log("...");
+
                 Debug.Log(s);
                 string des = JsonConvert.DeserializeObject<MBTIRespone>(s).result.description;
                 uiController.victoryPanel.ShowResult(mbti + " : " + des);
@@ -88,13 +98,6 @@ public class MBTIQuestionController : QuestionController
         {
             if (numQuesAnswered < numQues)
             {
-
-                MBTIResult mbti = new MBTIResult();
-                mbti.idQues = currQuestion.id.ToString();
-                mbti.nameQues = currQuestion.nameQuestion;
-                mbti.answer = result == 0 ? currQuestion.nameAns1 : currQuestion.nameAns2;
-                results.Add(mbti);
-
                 DisplayRandomQuestion();
             }
             else
@@ -102,7 +105,9 @@ public class MBTIQuestionController : QuestionController
                 GameManager.Instance.ChangeState(GameState.Playing);
                 questionPanel.HidePanel();
             }
+            
         }
+        checkingResult = false;// hmm :))
 
     }
 
