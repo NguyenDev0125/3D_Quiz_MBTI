@@ -1,4 +1,4 @@
-
+﻿
 using TMPro;
 using UnityEngine;
 
@@ -6,20 +6,30 @@ public class Teacher : MonoBehaviour
 {
     public int id;
     public string teacher = "Teacher";
+    public string quest = "Xác nhận trả lời câu hỏi ?";
     public ArrowDirection arrowDirection;
     public MissionListPanel missionListPanel;
     public GameObject teacherNameObj;
     public Transform player;
+    public ConfirmPanel confirmPanel;
     public int numQues;
     bool isAnswered = false;
     private void OnTriggerEnter(Collider other)
     {
         if(!isAnswered)
         {
-            isAnswered = true;
-            GameManager.Instance.QuestionController.StartAnswering(numQues);
+            confirmPanel.OnResult = (result) =>
+            {
+                if (result == ConfirmResult.OK)
+                {
+                    isAnswered = true;
+                    GameManager.Instance.QuestionController.StartAnswering(numQues);
+                    missionListPanel.UnLockMission(id);
+                }
+            };
+            confirmPanel.Display(quest);
 
-            missionListPanel.UnLockMission(id);
+
         }
     }
     private void Awake()

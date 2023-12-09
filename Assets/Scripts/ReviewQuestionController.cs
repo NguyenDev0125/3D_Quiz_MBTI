@@ -68,8 +68,9 @@ public class ReviewQuestionController : QuestionController
             {
                 score += r3.score;
             }
+
             List<TestHistory2> listTest;
-            string data = PlayerPrefs.GetString("test_history","");
+            string data = PlayerPrefs.GetString("test_history", "");
             if(data == "")
             {
                 listTest = new List<TestHistory2>();
@@ -79,11 +80,21 @@ public class ReviewQuestionController : QuestionController
                 listTest = JsonConvert.DeserializeObject<List<TestHistory2>>(data);
             }
             TestHistory2 test = new TestHistory2();
-            test.name = listR3[0].name;
+            test.name = attempt.name;
             test.examDate = listR3[0].examDate;
             test.totalScore = score;
-            listTest.Add(test);
+            bool check = true;
+            for (int i = 0; i < listTest.Count; i++)
+            {
+                if (listTest[i].name == test.name)
+                {
+                    check = false;
+                    listTest[i] = test; break;
+                }
+            }
+            if (check) listTest.Add(test);
             string js = JsonConvert.SerializeObject(listTest);
+            Debug.Log(js);
             PlayerPrefs.SetString("test_history", js);
 
         });

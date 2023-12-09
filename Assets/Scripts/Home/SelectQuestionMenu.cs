@@ -20,15 +20,13 @@ public class SelectQuestionMenu : MonoBehaviour
     public TextMeshProUGUI text;
     public GameObject historyPanel;
     ConfirmPanel confirmPanel;
-
+    private bool isOpenned = false;
     private void Awake()
     {
         mbtiBtn.onClick.AddListener(MBTIBtnClick);
         reviewBtn.onClick.AddListener(ReviewBtnClick);
         backBtn.onClick.AddListener(OnBackBtnClick);
         showHistoryBtn.onClick.AddListener(ShowHistory);
-        // tao button tren UI , xong gan event onClick thi an cai panel do di . 
-        // :)) kho giai thich qua :D 
         confirmPanel = FindObjectOfType<ConfirmPanel>(true);
     }
     private void MBTIBtnClick()
@@ -60,8 +58,9 @@ public class SelectQuestionMenu : MonoBehaviour
     private void ShowHistory()
     {
         historyPanel.gameObject.SetActive(!historyPanel.activeInHierarchy);
-        
-        string data = PlayerPrefs.GetString("test_historys", "");
+        if (isOpenned) return;
+        isOpenned = true;
+        string data = PlayerPrefs.GetString("test_history", "");
         if(data == "")
         {
             text.gameObject.SetActive(true);
@@ -70,10 +69,19 @@ public class SelectQuestionMenu : MonoBehaviour
         }
         text.gameObject.SetActive(false);
         scollrect.gameObject.SetActive(true);
+        
         List<TestHistory2> listTest  = JsonConvert.DeserializeObject<List<TestHistory2>>(data);
+        for(int i = 0; i < scollrect.content.childCount; i++)
+        {
+            scollrect.content.transform.GetChild(0).gameObject.SetActive(false);
+            Destroy(scollrect.content.transform.GetChild(0).gameObject);
+        }
         foreach(TestHistory2 test in listTest)
         {
             Item itemClone = GameObject.Instantiate(itemPrb, scollrect.content);
+            itemClone.gameObject.SetActive(true);
+            itemClone.GetComponent<RectTransform>().sizeDelta = new Vector2(700, 100);
+            itemClone.GetComponentInChildren<Image>().enabled = true;
             itemClone.SetItem(test.name , test.totalScore);
         }
         

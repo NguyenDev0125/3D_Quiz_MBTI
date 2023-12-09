@@ -1,11 +1,13 @@
 
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ConfirmPanel : MonoBehaviour
 {
     [SerializeField] Button confirm, cancel;
+    [SerializeField] TextMeshProUGUI questText;
     public Action<ConfirmResult> OnResult;
     private void Awake()
     {
@@ -28,6 +30,12 @@ public class ConfirmPanel : MonoBehaviour
     public void Display(bool isDisplay = true)
     {
         this.gameObject.SetActive(isDisplay);
+    }
+
+    public void Display(string quest)
+    {
+        questText.text = quest;
+        this.gameObject.SetActive(true);
     }
 }
 
