@@ -23,6 +23,7 @@ public class QuestionLoader : MonoBehaviour
             {
                 MBTIQuestion quest = exams[0].mbtI_ExamQuestions[i].mbtI_Question;
                 quest.id2 = exams[0].mbtI_ExamQuestions[i].id.ToString();
+                quest.id = exams[0].mbtI_ExamQuestions[i].id.ToString();
                 MBTIquestionList.questions.Add(quest);
 
             }

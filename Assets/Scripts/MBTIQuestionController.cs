@@ -56,7 +56,7 @@ public class MBTIQuestionController : QuestionController
         }
 
         MBTIResult mbti = new MBTIResult();
-        mbti.idQues = currQuestion.id.ToString();
+        mbti.idQues = currQuestion.id;
         mbti.nameQues = currQuestion.nameQuestion;
         mbti.answer = result == 0 ? currQuestion.nameAns1 : currQuestion.nameAns2;
         results.Add(mbti);
@@ -70,7 +70,8 @@ public class MBTIQuestionController : QuestionController
             for(int i = 0; i < results.Count; i++)
             {
                 ResultDetail dt = new ResultDetail();
-                dt.mbtI_ExamQuestionId = int.Parse(currQuestion.id2);
+              
+                dt.mbtI_ExamQuestionId = int.Parse(results[i].idQues);
                 dt.userChoice = results[i].answer;
                 rs.recordDetails.Add(dt);
             }
