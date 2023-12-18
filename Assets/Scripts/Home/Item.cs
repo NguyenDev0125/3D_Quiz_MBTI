@@ -9,4 +9,9 @@ public class Item : MonoBehaviour
         nameTxt.text = name;
         scoreTxt.text = score.ToString();
     }
+    public void SetItem(string name, string message)
+    {
+        nameTxt.text = "";
+        scoreTxt.text = message;
+    }
 }

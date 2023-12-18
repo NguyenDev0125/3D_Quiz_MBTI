@@ -18,9 +18,12 @@ public class SelectExamPanel : MonoBehaviour
             this.gameObject.SetActive(false);
         });
     }
-
+    private bool isReviewExamLoaded = false;
     public void Display()
     {
+        gameObject.SetActive(true);
+        if (isReviewExamLoaded) return;
+        isReviewExamLoaded = true;
         questionLoader.LoadReviewExam((respone) =>
         {
             listExams = respone.result.items;
@@ -32,7 +35,7 @@ public class SelectExamPanel : MonoBehaviour
                 item.transform.SetParent(scrollview.content,false);
             }
         });
-        gameObject.SetActive(true);
+        
     }
 
     private void SelectExam(string id)

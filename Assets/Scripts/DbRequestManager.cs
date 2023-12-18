@@ -69,6 +69,9 @@ public class DbRequestManager : MonoBehaviour
     public void DataSendRequestWithToken(string url , string data, string token, Action<string> callBack = null)
     {
         StartCoroutine(IE_DataSendRequest(url, data, token , callBack));
+        // nay no giong nhu da luong ay ong 
+        // khi nay , goi ham nay 2 lan lien tuc , post va get , cai kia chua post len thi cai get da gui request len nen no chi lay dc du lieu cu hay sao ay , neen nhet cai get chay sau khi 
+        // sau khi post xong la dc 
     }
 
     private IEnumerator IE_DataSendRequest(string url, string json , string token = null , Action<string> callback = null)

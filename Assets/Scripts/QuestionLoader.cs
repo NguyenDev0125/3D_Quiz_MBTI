@@ -21,7 +21,10 @@ public class QuestionLoader : MonoBehaviour
 
             for (int i = 0; i < exams[0].mbtI_ExamQuestions.Count; i++)
             {
-                MBTIquestionList.questions.Add(exams[0].mbtI_ExamQuestions[i].mbtI_Question);
+                MBTIQuestion quest = exams[0].mbtI_ExamQuestions[i].mbtI_Question;
+                quest.id2 = exams[0].mbtI_ExamQuestions[i].id.ToString();
+                MBTIquestionList.questions.Add(quest);
+
             }
         });
 

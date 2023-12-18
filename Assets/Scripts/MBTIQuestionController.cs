@@ -14,6 +14,7 @@ public class MBTIQuestionController : QuestionController
     private void Awake()
     {
         results = new List<MBTIResult>();
+       
     }
     public override void DisplayRandomQuestion()
     {
@@ -69,7 +70,7 @@ public class MBTIQuestionController : QuestionController
             for(int i = 0; i < results.Count; i++)
             {
                 ResultDetail dt = new ResultDetail();
-                dt.mbtI_ExamQuestionId = int.Parse(results[i].idQues);
+                dt.mbtI_ExamQuestionId = int.Parse(currQuestion.id2);
                 dt.userChoice = results[i].answer;
                 rs.recordDetails.Add(dt);
             }
@@ -79,7 +80,12 @@ public class MBTIQuestionController : QuestionController
             {
                 Debug.Log(json);
                 Debug.Log(s);
+                RS rs = JsonConvert.DeserializeObject<RP>(s).result;
+                Debug.Log(rs.id);
+                PlayerPrefs.SetInt("MBTI_ID",rs.id);
+                PlayerPrefs.SetString("MBTI", mbtiString);
             });
+            // 
 
             Debug.Log(APIUrls.getMBTIDes + mbti);
             DbRequestManager.Instance.DataGetRequestWithToken(APIUrls.getMBTIDes + mbtiString, PlayerPrefs.GetString("usertoken"), (s) =>
@@ -88,6 +94,7 @@ public class MBTIQuestionController : QuestionController
                 string des = JsonConvert.DeserializeObject<MBTIRespone>(s).result.description;
                 Debug.Log(des);
                 uiController.victoryPanel.ShowResult(mbtiString + " : " + des);
+                
             });
             GameManager.Instance.GameVictory();
             questionPanel.HidePanel();
@@ -136,8 +143,25 @@ class MBTIRespone
 class MBTIResult2
 {
     public int id;
+    public int id2;
     public string name;
     public string code;
     public string description;
     public string mbtI_Departments;
+}
+
+public class RP
+{
+    public int statusCode;
+    public bool isSuccess;
+    public string errorMessage;
+    public RS result;
+}
+public class RS
+{
+    public int id;
+    public string name;
+    public string code;
+    public string description;
+    //public string mbti_Departments;// list
 }

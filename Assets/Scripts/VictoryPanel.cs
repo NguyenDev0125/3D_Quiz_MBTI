@@ -25,7 +25,7 @@ public class VictoryPanel : MonoBehaviour
         foreach (R3 r in listResults)
         {
             VictoryListItem obj = Instantiate(itemPrb , scroll.content);
-            obj.SetItem(r.name, r.score.ToString(), r.result);
+            obj.SetItem("Name : " +r.name, "Score : "+ r.score.ToString(), null);
         }
         resultTxt.gameObject.SetActive(false);
         this.gameObject.SetActive(true);

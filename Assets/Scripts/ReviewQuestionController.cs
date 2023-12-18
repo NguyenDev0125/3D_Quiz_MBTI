@@ -55,51 +55,53 @@ public class ReviewQuestionController : QuestionController
         DbRequestManager.Instance.DataSendRequestWithToken(APIUrls.postAttemptApi, json, token, (s) =>
         {
             Debug.Log(  s);
-        });
-        DbRequestManager.Instance.DataGetRequestWithToken(APIUrls.getResultReview, PlayerPrefs.GetString("usertoken"), (s) =>
-        {
-            Debug.Log("Test");
-            Debug.Log("API Tra ve :  "+s);
-            List<R3> listR3 = JsonConvert.DeserializeObject<R>(s).result.items;
-            uiController.victoryPanel.ShowListResult(listR3);
-            Debug.Log(listR3.Count);
-            int score = 0;
-            foreach(R3 r3 in listR3)
+            // con tai sao co 2 de li thi, toi cx kh bt :)) ua co ha
+            DbRequestManager.Instance.DataGetRequestWithToken(APIUrls.getResultReview, PlayerPrefs.GetString("usertoken"), (s) =>
             {
-                score += r3.score;
-            }
-
-            List<TestHistory2> listTest;
-            string data = PlayerPrefs.GetString("test_history", "");
-            if(data == "")
-            {
-                listTest = new List<TestHistory2>();
-            }
-            else
-            {
-                listTest = JsonConvert.DeserializeObject<List<TestHistory2>>(data);
-            }
-            TestHistory2 test = new TestHistory2();
-            test.name = attempt.name;
-            test.examDate = listR3[0].examDate;
-            test.totalScore = score;
-            bool check = true;
-            for (int i = 0; i < listTest.Count; i++)
-            {
-                if (listTest[i].name == test.name)
+                Debug.Log("Test");
+                Debug.Log("API Tra ve :  " + s);
+                List<R3> listR3 = JsonConvert.DeserializeObject<R>(s).result.items;
+                uiController.victoryPanel.ShowListResult(listR3);
+                Debug.Log(listR3.Count);
+                int score = 0;
+                foreach (R3 r3 in listR3)
                 {
-                    check = false;
-                    listTest[i] = test; break;
+                    score += r3.score;
                 }
-            }
-            if (check) listTest.Add(test);
-            string js = JsonConvert.SerializeObject(listTest);
-            Debug.Log(js);
-            PlayerPrefs.SetString("test_history", js);
 
+                List<TestHistory2> listTest;
+                string data = PlayerPrefs.GetString("test_history", "");
+                if (data == "")
+                {
+                    listTest = new List<TestHistory2>();
+                }
+                else
+                {
+                    listTest = JsonConvert.DeserializeObject<List<TestHistory2>>(data);
+                }
+                TestHistory2 test = new TestHistory2();
+                test.name = attempt.name;
+                test.examDate = listR3[0].examDate;
+                test.totalScore = score;
+                bool check = true;
+                for (int i = 0; i < listTest.Count; i++)
+                {
+                    if (listTest[i].name == test.name)
+                    {
+                        check = false;
+                        listTest[i] = test; break;
+                    }
+                }
+                if (check) listTest.Add(test);
+                string js = JsonConvert.SerializeObject(listTest);
+                Debug.Log(js);
+                PlayerPrefs.SetString("test_history", js);
+
+            });
+
+            GameManager.Instance.ChangeState(GameState.Playing);
         });
-        
-        GameManager.Instance.ChangeState(GameState.Playing);
+
     }
     public override void DisplayRandomQuestion()
     {
@@ -184,12 +186,14 @@ public class MBTIExam
 [Serializable]
 public class MBTIQuestionContent
 {
+    public int id;
     public MBTIQuestion mbtI_Question { get; set; }
 }
 [Serializable]
 public class MBTIQuestion : IQuestion
 {
     public string id { get; set; }
+    public string id2 { get; set; }
     public string nameQuestion { get; set; }
     public string firstAnswerType { get; set; }
     public string secondAnswerType { get; set; }
@@ -285,4 +289,5 @@ public class R3
     public string userId;
 
 }
+
 #endregion

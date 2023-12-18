@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4010b27120e54b04ea143e8497d30363, type: 3}
   m_Name: MBTIQuestionsListSO
   m_EditorClassIdentifier: 
-  questionListId: 1
+  questionListId: 4
   questions: []
