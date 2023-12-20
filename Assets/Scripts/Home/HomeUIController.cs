@@ -39,13 +39,13 @@ public class HomeUIController : MonoBehaviour
         if(PlayerPrefs.GetInt("mt",0) == 0)
         {
             selectQuesMenu.SetActive(false);
-            
+            loginPanel.gameObject.SetActive(false);
+
         }
         else if(gameMode == 1)
         {
             selectQuesMenu.SetActive(true);
             loginPanel.gameObject.SetActive(false);
-            
         }
         PlayerPrefs.SetInt("mt", -1);
 
