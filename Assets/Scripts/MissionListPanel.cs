@@ -28,7 +28,6 @@ public class MissionListPanel : MonoBehaviour
         }
         Debug.Log("Total mission :"+listMisstionUI.Count);
     }
-    int currMisstionIdx = 0;
     public void UnLockMission(int id)
     {
         for (int i = 0; i < listMission.Count; i++)

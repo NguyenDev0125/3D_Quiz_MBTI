@@ -112,6 +112,7 @@ public class ReviewQuestionController : QuestionController
         currQuestion = GetRandomQuestionContent();
         if(currQuestion != null)
         {
+            questionPanel.UpdateCounterText($"{++counter}/{questionList.questions.Count}");
             questionPanel.DisplayQuestion(currQuestion);
         }
     }

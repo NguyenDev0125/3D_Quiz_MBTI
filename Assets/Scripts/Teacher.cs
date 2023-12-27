@@ -12,25 +12,26 @@ public class Teacher : MonoBehaviour
     public GameObject teacherNameObj;
     public Transform player;
     public ConfirmPanel confirmPanel;
+    public Chat chat;
     public int numQues;
+    public ChatPanel chatPanel;
     bool isAnswered = false;
     private void OnTriggerEnter(Collider other)
     {
         if(!isAnswered)
         {
-            confirmPanel.OnResult = (result) =>
+            chatPanel.ShowPanel(chat, () =>
             {
-                if (result == ConfirmResult.OK)
-                {
-                    isAnswered = true;
-                    GameManager.Instance.QuestionController.StartAnswering(numQues);
-                    missionListPanel.UnLockMission(id);
-                }
-            };
-            confirmPanel.Display(quest);
-
-
+                isAnswered = true;
+                GameManager.Instance.QuestionController.StartAnswering(numQues);
+                missionListPanel.UnLockMission(id);
+            });
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        chatPanel.HidePanel();
     }
     private void Awake()
     {
