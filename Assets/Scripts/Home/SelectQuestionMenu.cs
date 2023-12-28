@@ -114,8 +114,10 @@ public class SelectQuestionMenu : MonoBehaviour
                 // lay des 
                 DbRequestManager.Instance.DataGetRequestWithToken(APIUrls.getMBTIDes + mbti, PlayerPrefs.GetString("usertoken"), (s) =>
                 {
+                    Debug.Log("Desss");
+                    Debug.Log(s);
                     MBTIResult2 result = JsonConvert.DeserializeObject<MBTIRespone>(s).result;
-                    mbtiText.text = mbti;
+                    mbtiText.text = mbti + " - " + result.name ;
                     mbtiDesText.text = result.description;
                 });
                 string getMBTIDepartment = APIUrls.getMBTIDepartment;

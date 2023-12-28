@@ -11,9 +11,11 @@ public class AnswerButton : MonoBehaviour
     public QuestionPanel questionPanel;
     private void Awake()
     {
-        gameObject.GetComponent<Button>().onClick.AddListener(() =>
+
+        btn.onClick.AddListener(() =>
         {
-            Invoke("SendResult", 0.5f);
+            btn.interactable = false;
+            SendResult();
             
         });
     }

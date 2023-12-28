@@ -22,6 +22,7 @@ public class MBTIQuestionPanel : QuestionPanel
     }
     public override void TakeResult(int result)
     {
+        base.TakeResult(result);
         A.btn.interactable = false;
         B.btn.interactable = false;
         C.btn.interactable = false;

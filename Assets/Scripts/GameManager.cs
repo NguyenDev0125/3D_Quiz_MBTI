@@ -13,8 +13,6 @@ public class GameManager : SingletonGeneric<GameManager>
     public GameState GameState;
 
     public QuestionController QuestionController { get => questionController;}
-
-
     private void Awake()
     {
         Application.targetFrameRate = 60;
@@ -22,11 +20,13 @@ public class GameManager : SingletonGeneric<GameManager>
         if(gameMode == 0)
         {
             questionController = mbtiQuesController;
+            mbtiQuesController.UpdateCounterText();
             Debug.Log(0);
         }
         else
         {
             questionController = reviewQuestionController;
+            reviewQuestionController.UpdateCounterText();
             Debug.Log(1);
         }
     }

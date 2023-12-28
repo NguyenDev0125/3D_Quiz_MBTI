@@ -18,9 +18,9 @@ public class ReviewQuestionController : QuestionController
         totalQues = questionList.questions.Count;
 
     }
-    private void Start()
+    public void UpdateCounterText()
     {
-        questionPanel.UpdateCounterText($"{counter}/{totalQues}");
+        questionPanel.UpdateCounterText($"0/{totalQues}");
     }
     public override void TakeResult(int answerIndex)
     {
@@ -30,10 +30,10 @@ public class ReviewQuestionController : QuestionController
         newAttemptDetail.userAnswered = currQuestion.listAnswer[answerIndex].value;
         attempt.attemptDetails.Add(newAttemptDetail);
 
-        if (questionList.questions.Count == 0)
+        if (questionList.questions.Count <= 0)
         {
-            
             CompleteQuestion();
+            questionPanel.HidePanel();
         }
 
         numQuesAnswered++;

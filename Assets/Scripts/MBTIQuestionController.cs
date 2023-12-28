@@ -14,8 +14,12 @@ public class MBTIQuestionController : QuestionController
     private void Awake()
     {
         results = new List<MBTIResult>();
-        questionPanel.UpdateCounterText($"0/{MBTIquestionList.questions.Count}");
         totalQues = MBTIquestionList.questions.Count;
+
+    }
+    public void UpdateCounterText()
+    {
+        questionPanel.UpdateCounterText($"0/{totalQues}");
     }
     public override void DisplayRandomQuestion()
     {
@@ -61,7 +65,7 @@ public class MBTIQuestionController : QuestionController
         mbti.nameQues = currQuestion.nameQuestion;
         mbti.answer = result == 0 ? currQuestion.nameAns1 : currQuestion.nameAns2;
         results.Add(mbti);
-
+        Debug.Log("Add");
         if (MBTIquestionList.questions.Count == 0)
         {
             string mbtiString = GetMBTIString();
@@ -75,6 +79,7 @@ public class MBTIQuestionController : QuestionController
                 dt.mbtI_ExamQuestionId = int.Parse(results[i].idQues);
                 dt.userChoice = results[i].answer;
                 rs.recordDetails.Add(dt);
+
             }
             string json = JsonConvert.SerializeObject(rs);
             Debug.Log("Push json");
@@ -89,7 +94,7 @@ public class MBTIQuestionController : QuestionController
             });
             // 
 
-            Debug.Log(APIUrls.getMBTIDes + mbti);
+            Debug.Log(APIUrls.getMBTIDes + mbtiString);
             DbRequestManager.Instance.DataGetRequestWithToken(APIUrls.getMBTIDes + mbtiString, PlayerPrefs.GetString("usertoken"), (s) =>
             {
                 Debug.Log(s);
@@ -145,12 +150,26 @@ class MBTIRespone
 class MBTIResult2
 {
     public int id;
-    public int id2;
+    //public int id2;
     public string name;
     public string code;
     public string description;
-    public string mbtI_Departments;
+    public int numberOfSuitableDepartment;
+    public List<MBTIDepartment> mbtI_Departments;
 }
+class MBTIDepartment
+{
+    Departmentt department;
+}
+class Departmentt
+{
+    public string id;
+    public string name;
+    public string code;
+    public string description;
+
+}
+
 
 public class RP
 {

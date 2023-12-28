@@ -8,6 +8,9 @@ public class ReviewQuestionPanel : QuestionPanel
     public override void DisplayQuestion(IQuestion question)
     {
         base.DisplayQuestion(question);
+        A.btn.interactable = true;
+        B.btn.interactable = true;
+        C.btn.interactable = true;
         ReviewQuestionContent ques = (ReviewQuestionContent)question;
         quesTxt.text = ques.question;
         if(ques.listAnswer.Count == 3)
