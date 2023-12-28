@@ -6,6 +6,7 @@ public class QuestionController : MonoBehaviour
 {
     public QuestionPanel questionPanel;
     protected int counter = 0;
+    protected int totalQues;
     protected int numQues;
     protected int numQuesAnswered;
     public virtual void StartAnswering(int numQues)

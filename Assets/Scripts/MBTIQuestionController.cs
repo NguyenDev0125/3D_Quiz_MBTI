@@ -15,10 +15,11 @@ public class MBTIQuestionController : QuestionController
     {
         results = new List<MBTIResult>();
         questionPanel.UpdateCounterText($"0/{MBTIquestionList.questions.Count}");
+        totalQues = MBTIquestionList.questions.Count;
     }
     public override void DisplayRandomQuestion()
     {
-        questionPanel.UpdateCounterText($"{++counter}/{MBTIquestionList.questions.Count}");
+        questionPanel.UpdateCounterText($"{++counter}/{totalQues}");
         currQuestion = GetRandomQuestion();
         questionPanel.DisplayQuestion(currQuestion);
     }

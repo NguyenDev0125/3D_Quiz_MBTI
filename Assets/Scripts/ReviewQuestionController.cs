@@ -15,8 +15,13 @@ public class ReviewQuestionController : QuestionController
     {
         attempt = new Attempts();
         attempt.name = questionList.examName;
-    }
+        totalQues = questionList.questions.Count;
 
+    }
+    private void Start()
+    {
+        questionPanel.UpdateCounterText($"{counter}/{totalQues}");
+    }
     public override void TakeResult(int answerIndex)
     {
         AttemptDetailRequest newAttemptDetail = new AttemptDetailRequest();
@@ -112,7 +117,7 @@ public class ReviewQuestionController : QuestionController
         currQuestion = GetRandomQuestionContent();
         if(currQuestion != null)
         {
-            questionPanel.UpdateCounterText($"{++counter}/{questionList.questions.Count}");
+            questionPanel.UpdateCounterText($"{++counter}/{totalQues}");
             questionPanel.DisplayQuestion(currQuestion);
         }
     }

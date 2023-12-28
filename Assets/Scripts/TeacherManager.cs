@@ -11,14 +11,21 @@ public class TeacherManager : MonoBehaviour
     int totalQues;
     private void Start()
     {
-
-        totalQues = mbtiList.questions.Count != 0? mbtiList.questions.Count : reviewQuestionList.questions.Count;
+        if(PlayerPrefs.GetInt("gamemode", 0)  == 0)
+        {
+            totalQues = mbtiList.questions.Count;
+        }
+        else
+        {
+            totalQues = reviewQuestionList.questions.Count;
+        }
+        
         Debug.Log(totalQues);
         int avgNumQues = totalQues / Teachers.Count;
-        for(int i = 0; i < Teachers.Count-1; i++)
+        for(int i = 0; i < Teachers.Count; i++)
         {
             Teachers[i].SetNumQues(avgNumQues);
         }
-        Teachers[Teachers.Count-1].SetNumQues((totalQues - avgNumQues *  (Teachers.Count-1)));
+        Teachers[Teachers.Count-1].SetNumQues(avgNumQues + (totalQues - (Teachers.Count * avgNumQues)));
     }
 }
