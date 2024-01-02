@@ -37,8 +37,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -83, y: -0.00000071525574}
-  m_SizeDelta: {x: 106.82001, y: 57.7}
+  m_AnchoredPosition: {x: -87.223, y: 0.28}
+  m_SizeDelta: {x: 112.17, y: 58.23}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4023310779019142718
 CanvasRenderer:
@@ -68,13 +68,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9b9e76cdd7568934c97262ed25513b0b, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
+  m_Sprite: {fileID: 21300000, guid: 8a56d621460a74f81b51fa56a9c543af, type: 3}
+  m_Type: 1
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
-  m_FillClockwise: 1
+  m_FillClockwise: 0
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
@@ -158,7 +158,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 198, y: -35.55}
-  m_SizeDelta: {x: 322.73, y: 39.09}
+  m_SizeDelta: {x: 322.74, y: 39.09}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4023310779150816941
 CanvasRenderer:
@@ -293,7 +293,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 280.99, y: 40}
-  m_SizeDelta: {x: 488.73, y: 39.09}
+  m_SizeDelta: {x: 488.72, y: 39.09}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4023310779409589602
 CanvasRenderer:
@@ -462,8 +462,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fd6cfa57d3f76354cb4835552c296b73, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 5c46ef710057f44aa94ce6228085bfd8, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -540,8 +540,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Select
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0f2cc95c1247d7347b33e2f870625ad8, type: 2}
+  m_sharedMaterial: {fileID: 6035290693477311315, guid: 0f2cc95c1247d7347b33e2f870625ad8, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

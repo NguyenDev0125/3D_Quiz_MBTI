@@ -281,8 +281,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fd6cfa57d3f76354cb4835552c296b73, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: be67a5105907c4040bb7de60dd9bb708, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -303,8 +303,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca4901df512a74344bf3743c8a474df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockSpr: {fileID: 21300000, guid: a6b9577e5569f2744b63c36f11bf571c, type: 3}
-  unLockSpr: {fileID: 21300000, guid: dcb04ec694aa6024ab9a1b355b8fe6e8, type: 3}
+  lockSpr: {fileID: 21300000, guid: 014a40e3187844454809111d8dbd5140, type: 3}
+  unLockSpr: {fileID: 21300000, guid: 67d74fe0bc2ff4f04bb9d4f9e1d63c02, type: 3}
   icon: {fileID: 8647067035197434622}
   text: {fileID: 8647067036529902087}
   completeBtn: {fileID: 4637635647618826236}
@@ -511,8 +511,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9b9e76cdd7568934c97262ed25513b0b, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 63da7969a0c2042478271b44e27d12de, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
