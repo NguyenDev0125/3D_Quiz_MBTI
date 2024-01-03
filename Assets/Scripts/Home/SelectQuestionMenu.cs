@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 
@@ -23,6 +24,8 @@ public class SelectQuestionMenu : MonoBehaviour
     public Item itemPrb2;
     public TextMeshProUGUI text;
     public GameObject historyPanel;
+    public MajorPanel majorPanel;
+    public AttempDetailPanel attempDetailPanel;
     ConfirmPanel confirmPanel;
     private bool isOpenned = false;
     [SerializeField] TextMeshProUGUI mbtiText , mbtiDesText;
@@ -84,7 +87,7 @@ public class SelectQuestionMenu : MonoBehaviour
                     itemClone.gameObject.SetActive(true);
                     itemClone.GetComponent<RectTransform>().sizeDelta = new Vector2(700, 100);
                     itemClone.GetComponentInChildren<Image>().enabled = true;
-                    itemClone.SetItem(test.name, test.score);
+                    itemClone.SetItem(test.id,test.name, test.score , OpenAttemptDetailPanel);
                 }
                 text.gameObject.SetActive(false);
                 scrollrect.gameObject.SetActive(true);
@@ -98,6 +101,18 @@ public class SelectQuestionMenu : MonoBehaviour
         });
 
         
+    }
+
+    private void OpenAttemptDetailPanel(string id)
+    {
+        Debug.Log(APIUrls.getAttempDetail + id);
+        DbRequestManager.Instance.DataGetRequestWithToken(APIUrls.getAttempDetail + id, PlayerPrefs.GetString("usertoken"), (s) =>
+        {
+            Debug.Log(s);
+            E e = JsonConvert.DeserializeObject<E>(s);
+            List<E2> listE2 = e.result.attemptDetails;
+            attempDetailPanel.Open(listE2);
+        });
     }
     public void ShowMBTIReuslt()
     {
@@ -134,7 +149,7 @@ public class SelectQuestionMenu : MonoBehaviour
                     for (int i = 0; i < listItem.Count; i++)
                     {
                         Item itemClone = Instantiate(itemPrb2, scrollview2.content);
-                        itemClone.SetItem(listItem[i].department.name, listItem[i].department.description);
+                        itemClone.SetItem(listItem[i].department.id,listItem[i].department.name, listItem[i].department.description , ShowMajor);
                         itemClone.gameObject.SetActive(true);
                     }
                 });
@@ -150,6 +165,11 @@ public class SelectQuestionMenu : MonoBehaviour
         });
 
 
+    }
+
+    private void ShowMajor(string id)
+    {
+        majorPanel.Open(id);
     }
     private void ClearList()
     {
@@ -198,4 +218,52 @@ public class Respone2
     public bool isSuccess;
     public string errorMessage;
     public Result2 result;
+}
+
+public class E
+{
+    public int statusCode;
+    public bool isSuccess;
+    public string errorMessage;
+    public E1 result;
+}
+
+public class E1
+{
+    public string id;
+    public string name;
+    //public string examDate;
+    public int attempType;
+    public int score;
+    public string result;
+    //public object doneBy;
+    public string userId;
+    public List<E2> attemptDetails;
+}
+public class E2
+{
+    public E3 examinationQuestion;
+}
+public class E3
+{
+    public string id;
+    public bool isCorrect;
+    public string userAnswered;
+    public E4 question;
+}
+public class E4
+{
+    public string id;
+    public string content;
+}
+public class E5
+{
+    public string Question;
+    public List<E6> ListAnswer;
+}
+
+public class E6
+{
+    public string Value;
+    public bool IsAnswer;
 }

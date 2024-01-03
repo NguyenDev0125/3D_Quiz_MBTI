@@ -20,5 +20,7 @@ public static class APIUrls
     public static readonly string getMBTIDes = baseAddress + "api/MBTIs?code="; 
     public static readonly string getResultReview = baseAddress + "api/Attempts?pageIndex=1&pageSize=100";
     public static readonly string getMBTIDepartment = baseAddress + "api/MBTIs/department/{0}?pageIndex=1&pageSize=100";
+    public static readonly string getMajor = baseAddress + "api/Department/";
+    public static readonly string getAttempDetail = baseAddress + "api/Attempts/";
 
 }
