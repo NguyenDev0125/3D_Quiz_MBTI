@@ -4530,7 +4530,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Select Game '
+  m_text: "L\u1EF1a ch\u1ECDn ch\u1EBF \u0111\u1ED9 ch\u01A1i"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0f2cc95c1247d7347b33e2f870625ad8, type: 2}
   m_sharedMaterial: {fileID: 6035290693477311315, guid: 0f2cc95c1247d7347b33e2f870625ad8, type: 2}
@@ -4557,12 +4557,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72.15
+  m_fontSize: 53
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72.15
+  m_fontSizeMax: 53
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -8456,7 +8456,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Home
+  m_text: "Menu ch\xEDnh"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0f2cc95c1247d7347b33e2f870625ad8, type: 2}
   m_sharedMaterial: {fileID: 6035290693477311315, guid: 0f2cc95c1247d7347b33e2f870625ad8, type: 2}
@@ -8483,12 +8483,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72.15
+  m_fontSize: 53
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72.15
+  m_fontSizeMax: 53
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -10717,7 +10717,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 170613234}
   m_HandleRect: {fileID: 170613233}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -14469,8 +14469,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6099712169468790265, guid: 7318a64af28702b429f428dc48ff7251, type: 3}
+      propertyPath: m_text
+      value: Thomas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6099712169468790265, guid: 7318a64af28702b429f428dc48ff7251, type: 3}
       propertyPath: m_fontSize
-      value: 2.75
+      value: 2.8
       objectReference: {fileID: 0}
     - target: {fileID: 6099712169468790265, guid: 7318a64af28702b429f428dc48ff7251, type: 3}
       propertyPath: m_fontAsset
@@ -19748,7 +19752,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: MBTI Test
+  m_text: "Nhi\u1EC7m v\u1EE5"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0f2cc95c1247d7347b33e2f870625ad8, type: 2}
   m_sharedMaterial: {fileID: 6035290693477311315, guid: 0f2cc95c1247d7347b33e2f870625ad8, type: 2}
@@ -28322,7 +28326,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Skip
+  m_text: "C\xE2u ti\u1EBFp theo"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0f2cc95c1247d7347b33e2f870625ad8, type: 2}
   m_sharedMaterial: {fileID: 6035290693477311315, guid: 0f2cc95c1247d7347b33e2f870625ad8, type: 2}
@@ -28652,12 +28656,16 @@ PrefabInstance:
       value: 51.999985
       objectReference: {fileID: 0}
     - target: {fileID: 8747058747621062303, guid: f9e222873f46c49469ba445357273c94, type: 3}
+      propertyPath: m_text
+      value: "Hu\u1EF7"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8747058747621062303, guid: f9e222873f46c49469ba445357273c94, type: 3}
       propertyPath: m_fontAsset
       value: 
       objectReference: {fileID: 11400000, guid: 0f2cc95c1247d7347b33e2f870625ad8, type: 2}
     - target: {fileID: 8747058747621062303, guid: f9e222873f46c49469ba445357273c94, type: 3}
       propertyPath: m_hasFontAssetChanged
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8747058748055234089, guid: f9e222873f46c49469ba445357273c94, type: 3}
       propertyPath: m_Name
@@ -28760,12 +28768,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8747058748258299877, guid: f9e222873f46c49469ba445357273c94, type: 3}
+      propertyPath: m_text
+      value: "X\xE1c nh\u1EADn"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8747058748258299877, guid: f9e222873f46c49469ba445357273c94, type: 3}
       propertyPath: m_fontAsset
       value: 
       objectReference: {fileID: 11400000, guid: 0f2cc95c1247d7347b33e2f870625ad8, type: 2}
     - target: {fileID: 8747058748258299877, guid: f9e222873f46c49469ba445357273c94, type: 3}
       propertyPath: m_hasFontAssetChanged
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9e222873f46c49469ba445357273c94, type: 3}
@@ -29108,7 +29120,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: VICTORY !!!
+  m_text: "HO\xC0N TH\xC0NH !!!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0f2cc95c1247d7347b33e2f870625ad8, type: 2}
   m_sharedMaterial: {fileID: 6035290693477311315, guid: 0f2cc95c1247d7347b33e2f870625ad8, type: 2}
@@ -29818,7 +29830,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 128.5
+  m_fontSize: 113.75
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -32144,7 +32156,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Review Questions
+  m_text: "C\xE2u h\u1ECFi \xF4n t\u1EADp"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0f2cc95c1247d7347b33e2f870625ad8, type: 2}
   m_sharedMaterial: {fileID: 6035290693477311315, guid: 0f2cc95c1247d7347b33e2f870625ad8, type: 2}
@@ -37003,7 +37015,7 @@ MonoBehaviour:
   - "Hi ! ch\xE0o c\u1EADu"
   - "L\xE2u r\xF9i m\xECnh kh\xF4ng g\u1EB7p nhau"
   - "B\u1EA1n mu\u1ED1n l\xE0m g\xEC h\xF4m nay ?"
-  startDelayTime: 4
+  startDelayTime: 2
   delayShowChar: 0.1
 --- !u!1001 &1958664864
 PrefabInstance:
@@ -45343,7 +45355,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: MBTI Test
+  m_text: "B\xE0i ki\u1EC3m tra MBTI"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0f2cc95c1247d7347b33e2f870625ad8, type: 2}
   m_sharedMaterial: {fileID: 6035290693477311315, guid: 0f2cc95c1247d7347b33e2f870625ad8, type: 2}
@@ -45370,12 +45382,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 91.5
+  m_fontSize: 72.3
   m_fontSizeBase: 91.5
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 72.3
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -45453,10 +45465,10 @@ RectTransform:
   m_Father: {fileID: 4819010872991320819}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 56.99999}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 24}
+  m_SizeDelta: {x: 800, y: 244}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!65 &4819010872449823296
 BoxCollider:
