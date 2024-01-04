@@ -146,7 +146,9 @@ internal class Attempts
     {
         //examDate = "2023-10-31T14:06:37.577Z";
         DateTime curDate = DateTime.UtcNow;
-        examDate = curDate.ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
+        DateTime curLocalDate = curDate.AddHours(7);
+
+        examDate = curLocalDate.ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
         //examDate = DateTime.Now.ToString("dd-mm-yyyy"); // output 07-12-2023 
         attemptDetails = new List<AttemptDetailRequest>();
     }
