@@ -5,12 +5,13 @@ using UnityEngine;
 
 public class VictoryListItem : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI nameText, scoreText, resultText;
+    [SerializeField] TextMeshProUGUI nameText, scoreText, resultText , dateText;
 
-    public void SetItem(string name , string score , string result)
+    public void SetItem(string name , string score , string result , string date)
     {
         nameText.text = name;
         scoreText.text = score;
-        resultText.text = result;   
+        resultText.text = result;
+        dateText.text = date;
     }
 }

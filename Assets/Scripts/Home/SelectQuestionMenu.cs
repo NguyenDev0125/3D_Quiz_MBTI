@@ -87,7 +87,7 @@ public class SelectQuestionMenu : MonoBehaviour
                     itemClone.gameObject.SetActive(true);
                     itemClone.GetComponent<RectTransform>().sizeDelta = new Vector2(700, 100);
                     itemClone.GetComponentInChildren<Image>().enabled = true;
-                    itemClone.SetItem(test.id,test.name, test.score , OpenAttemptDetailPanel);
+                    itemClone.SetItem(test.id,test.name, test.score , test.examDate , OpenAttemptDetailPanel);
                 }
                 text.gameObject.SetActive(false);
                 scrollrect.gameObject.SetActive(true);

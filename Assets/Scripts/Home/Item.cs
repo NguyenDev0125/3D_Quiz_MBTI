@@ -5,13 +5,14 @@ using UnityEngine.UI;
 
 public class Item : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI nameTxt, scoreTxt;
+    [SerializeField] TextMeshProUGUI nameTxt, scoreTxt, dateText;
     [SerializeField] Button button;
     string id;
-    public void SetItem(string id,string name , int score , Action<string> callback)
+    public void SetItem(string id,string name , int score  , string date, Action<string> callback)
     {
         this.id = id;
         nameTxt.text = name;
+        dateText.text = date;
         scoreTxt.text = score.ToString();
         button.onClick.RemoveAllListeners();
         button.onClick.AddListener(() =>callback?.Invoke(this.id));

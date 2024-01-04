@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 346691416}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -35752,30 +35752,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 97325807242522024, guid: 0c9324e4ebccd1e48a0f66b1ffbae84f, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 0f2cc95c1247d7347b33e2f870625ad8, type: 2}
-    - target: {fileID: 97325807242522024, guid: 0c9324e4ebccd1e48a0f66b1ffbae84f, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 6035290693477311315, guid: 0f2cc95c1247d7347b33e2f870625ad8, type: 2}
-    - target: {fileID: 97325807658301139, guid: 0c9324e4ebccd1e48a0f66b1ffbae84f, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 0f2cc95c1247d7347b33e2f870625ad8, type: 2}
-    - target: {fileID: 97325807658301139, guid: 0c9324e4ebccd1e48a0f66b1ffbae84f, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 6035290693477311315, guid: 0f2cc95c1247d7347b33e2f870625ad8, type: 2}
-    - target: {fileID: 97325807792007025, guid: 0c9324e4ebccd1e48a0f66b1ffbae84f, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 0f2cc95c1247d7347b33e2f870625ad8, type: 2}
-    - target: {fileID: 97325807792007025, guid: 0c9324e4ebccd1e48a0f66b1ffbae84f, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 6035290693477311315, guid: 0f2cc95c1247d7347b33e2f870625ad8, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c9324e4ebccd1e48a0f66b1ffbae84f, type: 3}
 --- !u!224 &1876469349 stripped

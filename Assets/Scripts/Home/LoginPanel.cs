@@ -11,6 +11,7 @@ public class LoginPanel : MonoBehaviour
     public TMP_InputField registerUsernameTxt;
     public TMP_InputField registerPasswordTxt;
     public TMP_InputField registerConfirmPasswordTxt;
+    public TMP_InputField emailText;
 
     public Button loginBtn;
     public Button registerBtn;
@@ -84,7 +85,7 @@ public class LoginPanel : MonoBehaviour
     {
         if(IsRegisterInputCorrect())
         {
-            UserRegister user = new UserRegister(registerUsernameTxt.text, registerPasswordTxt.text, registerConfirmPasswordTxt.text);
+            UserRegister user = new UserRegister(registerUsernameTxt.text, registerPasswordTxt.text, registerConfirmPasswordTxt.text , emailText.text);
             string json = JsonConvert.SerializeObject(user);
             Debug.Log(json);
             DbRequestManager.Instance.DataSendRequest(APIUrls.userRegisterApi, json, (s) =>
@@ -117,7 +118,7 @@ public class LoginPanel : MonoBehaviour
 
     private bool IsRegisterInputCorrect()
     {
-        return registerUsernameTxt.text != "" && registerPasswordTxt.text != "" && registerConfirmPasswordTxt.text != "";
+        return registerUsernameTxt.text != "" && registerPasswordTxt.text != "" && registerConfirmPasswordTxt.text != "" && emailText.text.Length > 0 && emailText.text.Contains("@gmail.com");
     }
 
     private void SetStatus(string status)
@@ -177,10 +178,11 @@ public class UserRegister
     public string email = "";
     public string fistName = "";
     public string lastName = "";
-    public UserRegister(string username, string password, string confirmPassword)
+    public UserRegister(string username, string password, string confirmPassword , string email)
     {
         this.userName = username;
         this.password = password;
         this.confirmPassword = confirmPassword;
+        this.email = email;
     }
 }
