@@ -10880,6 +10880,10 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2743848444118312879, guid: 7318a64af28702b429f428dc48ff7251, type: 3}
+      propertyPath: teacher
+      value: Mini
+      objectReference: {fileID: 0}
+    - target: {fileID: 2743848444118312879, guid: 7318a64af28702b429f428dc48ff7251, type: 3}
       propertyPath: chatPanel
       value: 
       objectReference: {fileID: 862494455}
@@ -14118,6 +14122,10 @@ PrefabInstance:
     - target: {fileID: 2743848444118312879, guid: 7318a64af28702b429f428dc48ff7251, type: 3}
       propertyPath: numQues
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2743848444118312879, guid: 7318a64af28702b429f428dc48ff7251, type: 3}
+      propertyPath: teacher
+      value: Thomas
       objectReference: {fileID: 0}
     - target: {fileID: 2743848444118312879, guid: 7318a64af28702b429f428dc48ff7251, type: 3}
       propertyPath: chatPanel
@@ -18623,6 +18631,10 @@ PrefabInstance:
     - target: {fileID: 2743848444118312879, guid: 7318a64af28702b429f428dc48ff7251, type: 3}
       propertyPath: numQues
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2743848444118312879, guid: 7318a64af28702b429f428dc48ff7251, type: 3}
+      propertyPath: teacher
+      value: Thomson
       objectReference: {fileID: 0}
     - target: {fileID: 2743848444118312879, guid: 7318a64af28702b429f428dc48ff7251, type: 3}
       propertyPath: chatPanel
