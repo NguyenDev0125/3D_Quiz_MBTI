@@ -1,4 +1,4 @@
-using DG.Tweening;
+﻿using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
@@ -13,7 +13,7 @@ public class MBTIQuestionPanel : QuestionPanel
         quesTxt.text = question.nameQuestion;
         A.SetText(question.nameAns1);
         B.SetText(question.nameAns2);
-        C.SetText("Next question");
+        C.SetText("Câu tiếp theo");
         A.btn.interactable = true; 
         B.btn.interactable = true;
         C.btn.interactable = true;
