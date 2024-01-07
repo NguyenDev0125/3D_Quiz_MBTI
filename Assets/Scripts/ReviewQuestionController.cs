@@ -212,12 +212,13 @@ public class MBTIQuestion : IQuestion
 }
 
 [Serializable]
-public class TestHistory // cai nay chui dau ra 
+public class TestHistory
 {
     public string id;
     public string name { get; set; }
     public string description { get; set; }
     public int totalNumberOfQuestion { get; set; }
+    public int examPrice = 10;
     public List<ExamQuestion> examinationQuestions { get; set; }
 }
 [Serializable]

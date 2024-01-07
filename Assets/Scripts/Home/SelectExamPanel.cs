@@ -31,7 +31,7 @@ public class SelectExamPanel : MonoBehaviour
             {
                 TestHistory ex = listExams[i];
                 ExamItemUI item = Instantiate(examUIPrb);
-                item.SetItem(ex.id, ex.name, ex.description, SelectExam);
+                item.SetItem(ex.id, ex.name, ex.description, ex.examPrice , false, SelectExam);
                 item.transform.SetParent(scrollview.content,false);
             }
         });
