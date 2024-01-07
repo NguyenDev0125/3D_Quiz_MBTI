@@ -17,7 +17,7 @@ public class HomeUIController : MonoBehaviour
     public Button openLoginBtn;
     [SerializeField] List<Button> listBtns;
     [SerializeField] Ease ease;
-
+    [SerializeField] ProfilePanel profilePanel;
     private void Awake()
     {
         foreach (Button btn in listBtns)
@@ -63,11 +63,13 @@ public class HomeUIController : MonoBehaviour
         rect.transform.localScale *= 0.8f;
         rect.DOScale(normalScale, 0.3f).SetEase(Ease.OutBounce);
         homeMenu.SetActive(false);
+        profilePanel.UpdateStatus();
     }
 
     private void OpenSettingMenu()
     {
         SoundSettingPanel.Instance.Togle();
+        profilePanel.UpdateStatus();
     }
 
     private void QuitGame()
@@ -77,6 +79,7 @@ public class HomeUIController : MonoBehaviour
 
     private void OpenLoginMenu()
     {
+        profilePanel.UpdateStatus();
         loginPanel.gameObject.SetActive(true);
         loginPanel.transform.localScale *= 0.8f;
         loginPanel.transform.DOScale(Vector3.one, 0.3f).SetEase(Ease.OutBounce);
