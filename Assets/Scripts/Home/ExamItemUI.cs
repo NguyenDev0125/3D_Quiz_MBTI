@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using TMPro;
 using UnityEngine;
@@ -30,7 +30,7 @@ public class ExamItemUI : MonoBehaviour
             tokenIcon.gameObject.SetActive(true);
 
         }
-
+        Debug.Log(id);
         this.callBack = callback;
         nameTxt.text = n;
         desTxt.text = des;
@@ -48,7 +48,7 @@ public class ExamItemUI : MonoBehaviour
             }
 
         };
-        confirmPanel.Display();
+        confirmPanel.Display("Bài kiểm tra đã được mua, bạn có muốn vào trò chơi luôn chứ ?");
     }
 
     private void PurchaseExam()
@@ -59,23 +59,27 @@ public class ExamItemUI : MonoBehaviour
             if (result == ConfirmResult.OK)
             {
                 PurchaseExam exam = new PurchaseExam();
-                exam.examId = id;
-                String js = JsonConvert.SerializeObject(result);
+                exam.examId = this.id;
+                String js = JsonConvert.SerializeObject(exam);
+                Debug.Log(js);
                 DbRequestManager.Instance.DataSendRequestWithToken(APIUrls.purchaseExam, js , PlayerPrefs.GetString("usertoken"), (s) =>
                 {
+                    Debug.Log(s);
                     PurchaseResult rs = JsonConvert.DeserializeObject<PurchaseResult>(s);
                     if(rs.isSuccess)
                     {
                         selectBtn.onClick.RemoveAllListeners();
                         selectBtn.onClick.AddListener(OnSelectButtonClick);
                         btnImage.sprite = unlockedSpr;
+                        tokenIcon.gameObject.SetActive(false);
                         btnText.text = "Select";
+                        FindObjectOfType<ProfilePanel>().UpdateStatus();
                     }
                 });
             }
 
         };
-        confirmPanel.Display();
+        confirmPanel.Display("Mua bài kiểm tra này với giá 10 tokens chứ ?");
     }
 
 }
@@ -90,3 +94,4 @@ struct PurchaseResult
     public string errorMessage;
     public string result;
 }
+

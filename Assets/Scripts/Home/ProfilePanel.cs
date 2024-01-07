@@ -8,6 +8,10 @@ public class ProfilePanel : MonoBehaviour
     [SerializeField] TextMeshProUGUI usernameTxt, tokenTxt;
     private void Awake()
     {
+        UpdateStatus();
+    }
+    public void UpdateStatus()
+    {
         usernameTxt.text = "Loading...";
         tokenTxt.text = "0";
         PlayerManager.Instance.GetUserProfile((user) =>

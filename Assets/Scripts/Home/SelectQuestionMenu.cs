@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using TMPro;
@@ -42,18 +42,53 @@ public class SelectQuestionMenu : MonoBehaviour
     }
     private void MBTIBtnClick()
     {
-        confirmPanel.OnResult = (result) =>
+        if(PlayerManager.Instance.UserProfile.allowMbti)
         {
-            if(result == ConfirmResult.OK)
+            confirmPanel.OnResult = (result) =>
             {
-                HomeUIController.OpenLoadingPanel();
-                questionsLoader.LoadMBTIQuestions();
-                PlayerPrefs.SetInt("gamemode", 0);
-                SceneManager.LoadScene("GamePlay");
-            }
+                if (result == ConfirmResult.OK)
+                {
+                    HomeUIController.OpenLoadingPanel();
+                    questionsLoader.LoadMBTIQuestions();
+                    PlayerPrefs.SetInt("gamemode", 0);
+                    SceneManager.LoadScene("GamePlay");
+                }
 
-        };
-        confirmPanel.Display();
+            };
+            confirmPanel.Display("Vào game :) ");
+        }
+        else
+        {
+            confirmPanel.OnResult = (rs) =>
+            {
+                if(rs == ConfirmResult.OK)
+                {
+                    DbRequestManager.Instance.DataSendRequestWithToken(APIUrls.purchaseMbti, "", PlayerPrefs.GetString("usertoken"), (s) =>
+                    {
+                        PurchaseResult result = JsonConvert.DeserializeObject<PurchaseResult>(s);
+                        if (result.isSuccess)
+                        {
+                            FindObjectOfType<ProfilePanel>().UpdateStatus();
+                            confirmPanel.OnResult = (r) =>
+                            {
+                                if (r == ConfirmResult.OK)
+                                {
+                                    HomeUIController.OpenLoadingPanel();
+                                    questionsLoader.LoadMBTIQuestions();
+                                    PlayerPrefs.SetInt("gamemode", 0);
+                                    SceneManager.LoadScene("GamePlay");
+                                }
+                            };
+                            confirmPanel.Display(result.result);
+                        }
+                    });
+                }
+
+            };
+            confirmPanel.Display("Bạn có muốn mua bài kiểm tra này không ?");
+
+        }
+
 
     }
     private void ReviewBtnClick()

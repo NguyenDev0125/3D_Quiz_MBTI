@@ -9,6 +9,7 @@ public class SelectExamPanel : MonoBehaviour
     [SerializeField] ScrollRect scrollview;
     [SerializeField] ExamItemUI examUIPrb;
     [SerializeField] Button closeBtn;
+    [SerializeField] ProfilePanel profilePanel;
 
     List<TestHistory> listExams;
     private void Awake()
@@ -24,16 +25,31 @@ public class SelectExamPanel : MonoBehaviour
         gameObject.SetActive(true);
         if (isReviewExamLoaded) return;
         isReviewExamLoaded = true;
+
         questionLoader.LoadReviewExam((respone) =>
         {
             listExams = respone.result.items;
-            for(int i = 0; i < listExams.Count;i++)
+            PlayerManager.Instance.GetPurchaseList((list) =>
             {
-                TestHistory ex = listExams[i];
-                ExamItemUI item = Instantiate(examUIPrb);
-                item.SetItem(ex.id, ex.name, ex.description, ex.examPrice , false, SelectExam);
-                item.transform.SetParent(scrollview.content,false);
-            }
+                for (int i = 0; i < listExams.Count; i++)
+                {
+                    TestHistory ex = listExams[i];
+
+                    bool isUnlocked = false;
+                    foreach(var it in list.result)
+                    {
+                        if(it.id == ex.id)
+                        {
+                            isUnlocked = true;
+                            break;
+                        }
+                    }
+                        ExamItemUI item = Instantiate(examUIPrb);
+                    item.SetItem(ex.id, ex.name, ex.description, ex.examPrice, isUnlocked, SelectExam);
+                    item.transform.SetParent(scrollview.content, false);
+                }
+            });
+
         });
         
     }

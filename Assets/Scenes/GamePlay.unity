@@ -44214,10 +44214,6 @@ MonoBehaviour:
     mission: "G\u1EB7p th\u1EA7y Thomson"
   - teacher: {fileID: 569269407}
     mission: "G\u1EB7p c\xF4 Mini"
-  - teacher: {fileID: 0}
-    mission: "G\u1EB7p c\xF4 Linda"
-  - teacher: {fileID: 0}
-    mission: "G\u1EB7p c\xF4 Lisa"
   arrowDirection: {fileID: 1128185284}
 --- !u!1001 &4819010872345740834
 PrefabInstance:

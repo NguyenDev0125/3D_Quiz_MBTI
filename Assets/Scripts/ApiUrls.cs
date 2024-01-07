@@ -23,8 +23,9 @@ public static class APIUrls
     public static readonly string getMajor = baseAddress + "api/Department/";
     public static readonly string getAttempDetail = baseAddress + "api/Attempts/";
     public static readonly string getUserProfile = baseAddress + "api/Users/profile";
-    public static readonly string purchaseExam = baseAddress + "";
-    public static readonly string purchaseMbti = baseAddress + "";
+    public static readonly string purchaseExam = baseAddress + "api/StudentPurchases";
+    public static readonly string purchaseMbti = baseAddress + "api/StudentPurchases/mbti";
+    public static readonly string getStudentPurchases = baseAddress + "api/StudentPurchases";
 
 
 }

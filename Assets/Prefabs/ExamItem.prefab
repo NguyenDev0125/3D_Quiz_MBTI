@@ -767,7 +767,7 @@ MonoBehaviour:
   nameTxt: {fileID: 4023310779150816942}
   desTxt: {fileID: 4023310779409589603}
   btnText: {fileID: 4023310779603924428}
-  unlockedSpr: {fileID: 21300000, guid: 40d10cf134e7d4b469ffd4f52cdcf21a, type: 3}
+  unlockedSpr: {fileID: 21300000, guid: edd8ce5141077402989d18611370c7d3, type: 3}
   lockedSpr: {fileID: 21300000, guid: 8a56d621460a74f81b51fa56a9c543af, type: 3}
 --- !u!1 &4023310779799724855
 GameObject:

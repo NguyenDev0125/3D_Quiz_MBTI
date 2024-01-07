@@ -20,6 +20,8 @@ public class PlayerManager
     }
     private UserProfile _userProfile;
     public UserProfile UserProfile => _userProfile;
+    private PurchaseList _purchaseList;
+    public PurchaseList PurchaseList => _purchaseList;
    public void GetUserProfile(Action<UserProfile> callback = null)
     {
         DbRequestManager.Instance.DataGetRequestWithToken(APIUrls.getUserProfile, PlayerPrefs.GetString("usertoken"), (s) =>
@@ -39,6 +41,16 @@ public class PlayerManager
         }
         return _userProfile.gameToken;
     }
+
+    public void GetPurchaseList(Action<PurchaseList> callBack)
+    {
+        DbRequestManager.Instance.DataGetRequestWithToken(APIUrls.getStudentPurchases, PlayerPrefs.GetString("usertoken"), (s) =>
+        {
+            _purchaseList = JsonConvert.DeserializeObject<PurchaseList>(s);
+            callBack?.Invoke(_purchaseList);
+        });
+    }
+
 }
 
 public class UserProfile
@@ -53,5 +65,20 @@ public class UserProfile
     public string highestScore;
     public string address;
     public int gameToken;
-    public string allowMbti;
+    public bool allowMbti;
+}
+
+public class PurchaseList
+{
+    public int statusCode;
+    public bool isSuccess;
+    public string errorMessage;
+    public List<PurchaseItem> result;
+}
+public class PurchaseItem
+{
+    public string id;
+    public string name;
+    public string description;
+    public int totalNumberOfQuestion;
 }
